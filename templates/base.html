@@ -1,0 +1,205 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--IE Compatibility Meta-->
+    <meta name="author" content="ali srwsht ali" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Bitcoin And Crypto Currency investment in iraq">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="assets/images/favicon/favicon.png" rel="icon">
+
+    <!-- Fonts
+    ============================================= -->
+    <link href="https://fonts.googleapis.com/css?family=Exo+2:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i%7CRoboto:300,300i,400,400i,500,500i,700,700i,900,900i%7CWork+Sans:300,400,500,600,700,800,900" rel="stylesheet" type="text/css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif&display=swap" rel="stylesheet">
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="{% static 'assets/css/external.css' %} " rel="stylesheet">
+    <link href="{% static 'assets/css/style.css' %} " rel="stylesheet">
+    <link rel="stylesheet" media="screen and (max-width: 768px)" href="{% static 'assets/css/mobile.css' %} ">
+    <script src="https://kit.fontawesome.com/7ec4da360a.js" crossorigin="anonymous"></script>
+    <title>Fardo | Crypto</title>
+</head>
+
+<body>
+    <div class="preloader">
+        <div class="loader-eclipse">
+            <div class="loader-content"></div>
+        </div>
+    </div>
+    <header id="header">
+        <nav id="navbar" role="navigation">
+            <div class="container">
+                <div id="menuToggle">
+                    <input id="menu-check" type="checkbox" />
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <ul id="menu">
+                        {% if user.is_authenticated %}
+                        <ul>
+                            <a href="{% url 'index' %}" class="pc ">
+                                <li class="active">HOME</li>
+                            </a>
+                            {% if 'register' in request.path %}
+                            <a href="{% url 'index' %}" class="mob">
+                                <li>HOME</li>
+                            </a>
+                            {%else%}
+                            <a href="#service" class="mob">
+                                <li>HOME</li>
+                            </a>
+                            <a href="#about" class="mob">
+                                <li>ABOUT</li>
+                            </a>
+                            <a href="#fqa" class="mob">
+                                <li>FQA</li>
+                            </a>
+                            {% endif %}
+                        </ul>
+                        <ul>
+                            <a href="{% url 'dashboard' %}" class="sign-up">
+                                <li>DASHBOARD</li>
+                            </a>
+                            <style>
+                                #logout input {
+                                    background: #191817;
+                                    border: none;
+                                    color: white;
+                                    padding: 0;
+                                    margin: 0;
+                                    cursor: pointer;
+                                    font-size: 17px;
+                                    height: 100%;
+                                    width: 100%;
+                                }
+                                
+                                #logout {
+                                    padding: 0;
+                                    margin: 0;
+                                }
+                            </style>
+                            <li>
+                                <form action="{% url 'logout' %}" method="post" id="logout">
+                                    {% csrf_token %}
+                                    <input type="submit" class="log nav-link" value="LOGOUT">
+                                </form>
+                            </li>
+                        </ul>
+                        {%else%}
+                        <ul>
+                            <a href="{% url 'index' %}" class="pc ">
+                                <li class="active">HOME</li>
+                            </a>
+                            {% if 'register' in request.path %}
+                            <a href="{% url 'index' %}" class="mob">
+                                <li>HOME</li>
+                            </a>
+                            {%else%}
+                            <a href="#service" class="mob">
+                                <li>HOME</li>
+                            </a>
+                            <a href="#about" class="mob">
+                                <li>ABOUT</li>
+                            </a>
+                            <a href="#fqa" class="mob">
+                                <li>FQA</li>
+                            </a>
+                            {% endif %}
+                        </ul>
+                        <ul>
+                            <a href="{% url 'register' %}" class="sign-up">
+                                <li>SIGN UP</li>
+                            </a>
+                            <a href="{% url 'login' %}" class="login">
+                                <li>LOGIN</li>
+                            </a>
+                        </ul>
+                        {%endif%}
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <br><br><br>
+    <style>
+
+    </style>
+
+    <div class="contact-bar-top">
+        <div class="contact-card">
+            <div align=center>
+                <i class="fas fa-map-marker-alt contact-icon"></i>
+            </div>
+            <div>
+                <p>Visit Us:22 Albahr St, Tanta, Egypt</p>
+            </div>
+        </div>
+        <div class="contact-card">
+            <div>
+                <i class="fas fa-envelope contact-icon "></i>
+            </div>
+            <div>
+                <p>email us:7oroof@7oroof.com</p>
+            </div>
+        </div>
+        <div class="contact-card">
+            <div>
+                <i class="fas fa-phone contact-icon"></i>
+            </div>
+            <div>
+                <p>call us:002 01065370701</p>
+            </div>
+        </div>
+    </div>
+    {% block content %}{% endblock content %}
+    <footer>
+        <p>Copyrights &copy; 2020</p>
+    </footer>
+    <br><br>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/5fb0184c0863900e88c8b213/default';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!-- Replain chat -->
+    <script>
+        window.replainSettings = {
+            id: '1b06643f-4d4b-4e33-a773-0480a5984651'
+        };
+        (function(u) {
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = u;
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s, x);
+        })('https://widget.replain.cc/dist/client.js');
+    </script>
+    <!-- #wrapper end -->
+    <script src=" {% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/functions.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {% include "js_home.html" %}
+</body>
+
+</html>

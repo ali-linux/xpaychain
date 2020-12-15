@@ -1,0 +1,8 @@
+#register {
+    height: auto;
+    overflow: hidden;
+}
+
+#register .container {
+    height: 570px;
+}

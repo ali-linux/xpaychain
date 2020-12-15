@@ -1,0 +1,21 @@
+footer .float-right b {
+    display: none;
+}
+
+.btn-success {
+    background: #ffa500;
+    border: none;
+}
+
+.btn:hover {
+    background: #29282A;
+}
+
+.btn-outline-info {
+    border: 1px solid #292929;
+    color: #292929;
+}
+
+.row .card-primary {
+    border-top: 5px solid #ffa500;
+}

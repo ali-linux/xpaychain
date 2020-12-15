@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+<body>
+    {% block content %}
+    <style>
+        .account-information img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center right;
+        }
+        
+        .account-information,
+        .account-balance-account {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+    <section id="user_dashboard">
+        <h1 align='center'>account status {{user.plan}}</h1>
+        <div class="container">
+            {% include "_alerts.html" %}
+            <div class="account-info">
+                <div class="account-balance">
+                    <div class="account-information">
+                        <h2>{{user.first_name}} {{user.last_name}}</h2>
+
+                        <img src="{{user.main_image.url}}">
+                    </div>
+                    <div class="account-balance-account">
+                        <h1>Account Balance</h1>
+                        <h3>${{user.amount}}</h3>
+                    </div>
+                </div>
+                <style>
+                    .user-options {
+                        overflow: scroll;
+                    }
+                </style>
+                <div class="user-options">
+                    <div class="options-btn">
+                        <a class="btn btn--primary" href="deposit.html">Deposit Money</a>
+                        <a class=" btn btn--primary" href="withdrawl.html">Withdrawl Money</a>
+                    </div>
+
+                    <h3 class="m-top-30">Transaction History</h3>
+                    {% if trans_query %}
+                    <ul>
+                        {% for tran in trans_query %}
+                        <li>{{tran.transaction_type}}</li>
+                        <li>{{tran.transaction_amount}}</li>
+                        <li>{{tran.transaction_date}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="calculator m-top-30 p-40">
+                <h1 class="m-bottom-30">Investment Calculator</h1>
+                <label class="p-left-10" for="plan">Amount</label>
+                <input type="text" placeholder="Amount $">
+                <div class="plan-select">
+                    <label class="m-right-20" for="plan">Plan</label>
+                    <div class="select m-bottom-30">
+                        <select name="slct" id="slct">
+                          <option selected disabled>Choose a Plan</option>
+                          <option value="basic">Basic</option>
+                          <option value="standard">Standard</option>
+                          <option value="gold">Gold</option>
+                          <option value="diamond">Diamond</option>
+                        </select>
+                    </div>
+                </div>
+                <label class="p-left-10" for="plan">Period of the investment</label>
+                <div class="invest-year">
+                    <input type="text" placeholder="No. of Years to Invest">
+                    <div class="select m-bottom-30">
+                        <select name="slct" id="slct">
+                          <option value="basic">month</option>
+                          <option value="standard">year</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-submit btn--primary m-top-30" type="submit">calculate</button>
+            </div>
+        </div>
+        </div>
+    </section>
+    {% endblock content %}
+</body>
