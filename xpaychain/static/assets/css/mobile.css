@@ -48,11 +48,21 @@
         transition: color 0.3s ease;
     }
     
+    #menuToggle form input {
+        background: #232323;
+        width: 200px;
+        height: 50px;
+        margin: 0;
+        padding: 0;
+        font-size: 22px;
+        padding-right: 120px;
+    }
+    
     #menuToggle a:hover {
         color: orange;
     }
     
-    #menuToggle input {
+    #menuToggle #menu-check {
         display: block;
         width: 40px;
         height: 32px;
@@ -103,20 +113,13 @@
  * into a crossmark.
  */
     
-    #menuToggle input:checked~span {
+    #menuToggle #menu-check:checked~span {
         opacity: 1;
         transform: rotate(45deg) translate(-2px, -1px);
         background: #f3f3f3;
     }
     
-    #header ul li {
-        /* margin-left: 35px; */
-    }
-    /*
- * But let's hide the middle one.
- */
-    
-    #menuToggle input:checked~span:nth-last-child(3) {
+    #menuToggle #menu-check:checked~span:nth-last-child(3) {
         opacity: 0;
         transform: rotate(0deg) scale(0.2, 0.2);
     }
@@ -124,7 +127,7 @@
  * Ohyeah and the last one should go the other direction
  */
     
-    #menuToggle input:checked~span:nth-last-child(2) {
+    #menuToggle #menu-check:checked~span:nth-last-child(2) {
         transform: rotate(-45deg) translate(0, -1px);
     }
     /*
@@ -170,6 +173,11 @@
     
     #menu li:after {
         margin: 0;
+    }
+    
+    #menu #logout-li {
+        width: 100px;
+        padding: 0;
     }
     /*
  * And let's slide it in from the left
@@ -311,4 +319,40 @@
     
     #register .pass-div input {
         width: 98%;
+    }
+    
+    #user_dashboard .account-info {
+        flex-direction: column;
+    }
+    
+    #user_dashboard .account-balance,
+    #user_dashboard .user-options {
+        margin: 20px 0;
+    }
+    
+    #user_dashboard .account-balance img {
+        height: 200px;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+    
+    #user_dashboard .account-balance {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #user_dashboard .account-balance .account-information {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    #user_dashboard .user-options .btn {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    #user_dashboard h1 {
+        font-size: 25px;
     }

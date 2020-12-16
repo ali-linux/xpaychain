@@ -2,22 +2,6 @@
 
 <body>
     {% block content %}
-    <style>
-        .account-information img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: center right;
-        }
-        
-        .account-information,
-        .account-balance-account {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-    </style>
     <section id="user_dashboard">
         <h1 align='center'>account status {{user.plan}}</h1>
         <div class="container">
@@ -26,7 +10,6 @@
                 <div class="account-balance">
                     <div class="account-information">
                         <h2>{{user.first_name}} {{user.last_name}}</h2>
-
                         <img src="{{user.main_image.url}}">
                     </div>
                     <div class="account-balance-account">
@@ -34,22 +17,11 @@
                         <h3>${{user.amount}}</h3>
                     </div>
                 </div>
-                <style>
-                    .user-options {
-                        overflow: scroll;
-                    }
-                    
-                    .trans-list li {
-                        font-size: 18px;
-                        margin-bottom: 10px;
-                    }
-                </style>
                 <div class="user-options">
                     <div class="options-btn">
                         <a class="btn btn--primary" href="deposit.html">Deposit Money</a>
                         <a class=" btn btn--primary" href="withdrawl.html">Withdrawl Money</a>
                     </div>
-
                     <h3 class="m-top-30">Transaction History</h3>
                     {% if trans_query %}
                     <ul class="trans-list">
@@ -88,7 +60,6 @@
                 </div>
                 <button class="btn btn-submit btn--primary m-top-30" type="submit">calculate</button>
             </div>
-        </div>
         </div>
     </section>
     {% endblock content %}

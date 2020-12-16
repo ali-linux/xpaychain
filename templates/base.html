@@ -88,7 +88,7 @@
                                     margin: 0;
                                 }
                             </style>
-                            <li>
+                            <li id="logout-li">
                                 <form action="{% url 'logout' %}" method="post" id="logout">
                                     {% csrf_token %}
                                     <input type="submit" class="log nav-link" value="LOGOUT">
