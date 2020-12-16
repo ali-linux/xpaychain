@@ -10,7 +10,7 @@ from django.forms import ValidationError
 
 class User(AbstractUser):
     phone       = models.CharField(max_length=50,blank=True,)
-    main_image  = models.ImageField(blank = True,null=True)
+    main_image  = models.ImageField(blank = True,null=True, default='default.jpg')
     no_plan     = 'Not subscribed'
     basic       = 'Basic'
     standard    = 'standard'
@@ -25,7 +25,7 @@ class User(AbstractUser):
     ]
 
     plan       = models.CharField(
-        max_length=10,
+        max_length=20,
         choices=plans,
         default=no_plan,
     )
@@ -41,7 +41,7 @@ class User(AbstractUser):
     # trans_url.allow_tags = True
 
 class Transactions(models.Model):
-    user        = models.ForeignKey(User,on_delete=models.DO_NOTHING)
+    user        = models.ForeignKey(User,on_delete=models.CASCADE)
     # phone = models.ForeignKey(User,on_delete=models.DO_NOTHING)
     withdrawll  = 'withdrawll'
     deposit  = 'deposit'

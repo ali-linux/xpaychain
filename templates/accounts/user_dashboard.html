@@ -38,6 +38,11 @@
                     .user-options {
                         overflow: scroll;
                     }
+                    
+                    .trans-list li {
+                        font-size: 18px;
+                        margin-bottom: 10px;
+                    }
                 </style>
                 <div class="user-options">
                     <div class="options-btn">
@@ -47,11 +52,9 @@
 
                     <h3 class="m-top-30">Transaction History</h3>
                     {% if trans_query %}
-                    <ul>
+                    <ul class="trans-list">
                         {% for tran in trans_query %}
-                        <li>{{tran.transaction_type}}</li>
-                        <li>{{tran.transaction_amount}}</li>
-                        <li>{{tran.transaction_date}}</li>
+                        <li>{{tran.transaction_type}}..........${{tran.transaction_amount}}........{{tran.transaction_date}}</li>
                         {% endfor %}
                     </ul>
                     {% endif %}

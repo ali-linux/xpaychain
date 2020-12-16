@@ -1,16 +1,17 @@
 {% extends 'admin/base.html' %} {% block page_content %}
 
 <div class="container">
-    <h3 class="m-top-30">Transaction History</h3>
-    {% if trans_query %}
+    {% if trans_query %} {% for tran in trans_query|slice:":1" %}
+    <h3 class="m-top-30">Transaction History {{tran.user.first_name}} {{tran.user.last_name}}</h3>
+    {%endfor%}
     <ul>
         {% for tran in trans_query %}
-        <li>{{tran.user}}</li>
-        <li>{{tran.transaction_type}}</li>
-        <li>{{tran.transaction_amount}}</li>
-        <li>{{tran.transaction_date}}</li>
+        <li>{{tran.user}}-{{tran.transaction_type}}..........${{tran.transaction_amount}}........{{tran.transaction_date}}</li>
         {% endfor %}
     </ul>
+    {%else%}
+    <h3 class="m-top-30">this user has no transactions</h3>
+
     {% endif %}
 </div>
 
