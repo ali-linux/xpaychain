@@ -1,222 +1,343 @@
 {% extends 'base.html' %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-<body>
+  <body>
     {% block content %}
-
     <!-- .module-social end -->
     <section id="service">
-        <div class="container">
-            <div class="content">
-                <div class="Interest">
-                    <h1><span>Crypto</span> investment</h1>
-                    <h3>XpayChain provides the best and safest method for cryptocurrency investors with interest rates of up to 10% per month. We create a suitable atmosphere for everyone who wants to partner with us to build a new concept in the world of
-                        decentralized finance and investment.</h3>
-                </div>
-                <div class="bitcoin-converter" style="width: 300px; height:335px; background-color: #FAFAFA; overflow:hidden; box-sizing: border-box; border: 1px solid #56667F; border-radius: 4px; text-align: right; line-height:14px; block-size:335px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #56667F;margin: 0;width: 300px;padding:1px;padding: 0px; margin: 0px;">
-                    <div style="height:315px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=converter&theme=light" width="300" height="310px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe></div>
-                    <div style="color: #FFFFFF; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;"><a href="https://coinlib.io" target="_blank" style="font-weight: 500; color: #FFFFFF; text-decoration:none; font-size:11px">Cryptocurrency Prices</a>&nbsp;by Coinlib</div>
-                </div>
+      <div class="container">
+        <div class="content">
+          <div class="Interest">
+            <h1><span>Crypto</span> investment</h1>
+            <h3>
+              XpayChain provides the best and safest method for cryptocurrency
+              investors with interest rates of up to 10% per month. We create a
+              suitable atmosphere for everyone who wants to partner with us to
+              build a new concept in the world of decentralized finance and
+              investment.
+            </h3>
+          </div>
+          <div
+            class="bitcoin-converter"
+            style="
+              width: 300px;
+              height: 335px;
+              background-color: #fafafa;
+              overflow: hidden;
+              box-sizing: border-box;
+              border: 1px solid #56667f;
+              border-radius: 4px;
+              text-align: right;
+              line-height: 14px;
+              block-size: 335px;
+              font-size: 12px;
+              font-feature-settings: normal;
+              text-size-adjust: 100%;
+              box-shadow: inset 0 -20px 0 0 #56667f;
+              margin: 0;
+              width: 300px;
+              padding: 1px;
+              padding: 0px;
+              margin: 0px;
+            "
+          >
+            <div style="height: 315px; padding: 0px; margin: 0px; width: 100%">
+              <iframe
+                src="https://widget.coinlib.io/widget?type=converter&theme=light"
+                width="300"
+                height="310px"
+                scrolling="auto"
+                marginwidth="0"
+                marginheight="0"
+                frameborder="0"
+                border="0"
+                style="border: 0; margin: 0; padding: 0"
+              ></iframe>
             </div>
-            <br>
-            <!-- bitcoin chart widget -->
-            <div class="bitcoin-chart">
-                <!-- <div class="btcwdgt-chart"></div> -->
-                <div style="height:560px; background-color: #FFFFFF; overflow:hidden; box-sizing: border-box; border: 1px solid #56667F; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #56667F;padding:1px;padding: 0px; margin: 0px; width: 100%;">
-                    <div style="height:540px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=chart&theme=light&coin_id=859&pref_coin_id=1505" width="100%" height="536px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;"></iframe></div>
-                    <div style="color: #FFFFFF; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing: border-box; padding: 2px 6px; width: 100%; font-family: Verdana, Tahoma, Arial, sans-serif;"><a href="https://coinlib.io" target="_blank" style="font-weight: 500; color: #FFFFFF; text-decoration:none; font-size:11px">Cryptocurrency Prices</a>&nbsp;by Coinlib</div>
-                </div>
+            <div
+              style="
+                color: #ffffff;
+                line-height: 14px;
+                font-weight: 400;
+                font-size: 11px;
+                box-sizing: border-box;
+                padding: 2px 6px;
+                width: 100%;
+                font-family: Verdana, Tahoma, Arial, sans-serif;
+              "
+            >
+              <a
+                href="https://coinlib.io"
+                target="_blank"
+                style="
+                  font-weight: 500;
+                  color: #ffffff;
+                  text-decoration: none;
+                  font-size: 11px;
+                "
+                >Cryptocurrency Prices</a
+              >&nbsp;by Coinlib
             </div>
+          </div>
         </div>
+        <br />
+        <div class="chart">
+          <div class="tradingview-widget-container">
+            <div id="tradingview_b8695"></div>
+            <div class="tradingview-widget-copyright">
+              <a
+                href="https://www.tradingview.com/symbols/BTCUSDT/?exchange=BINANCE"
+                rel="noopener"
+                target="_blank"
+                ><span class="blue-text">BTCUSDT Chart</span></a
+              >
+              by TradingView
+            </div>
+            <script
+              type="text/javascript"
+              src="https://s3.tradingview.com/tv.js"
+            ></script>
+            <script type="text/javascript">
+              new TradingView.widget({
+                width: 1100,
+                height: 810,
+                symbol: "BINANCE:BTCUSDT",
+                interval: "D",
+                timezone: "Etc/UTC",
+                theme: "light",
+                style: "1",
+                locale: "en",
+                toolbar_bg: "#f1f3f6",
+                enable_publishing: false,
+                hide_side_toolbar: false,
+                allow_symbol_change: true,
+                watchlist: [
+                  "BINANCE:ETHUSDT",
+                  "BINANCE:LTCUSDT",
+                  "BINANCE:BTCUSDT",
+                ],
+                details: true,
+                studies: ["MASimple@tv-basicstudies", "RSI@tv-basicstudies"],
+                container_id: "tradingview_b8695",
+              });
+            </script>
+          </div>
+        </div>
+      </div>
     </section>
     <script src="https://cdn.jsdelivr.net/gh/coinponent/coinponent@undefined/dist/coinponent.js"></script>
 
     <coin-ponent shadow="md" border-radius="0" units="1.4"></coin-ponent>
 
     <section id="service2" class="services services-2 text-center">
-        <div class="container">
-
-            <h1>What Is <span class="primary-span">Cryptocurrency </span>Lending?</h1>
-            <p>Cryptocurrency lending refers to the process of loaning fiat money or a stable digital asset for a fixed period of time and an interest rate. The lending process typically involves two or three parties: a borrower, a lender, and a platform
-                that connects both sides of the transaction. However, there are certain platforms that act as a lender themselves.</p>
-        </div>
-        <!-- .container end -->
+      <div class="container">
+        <h1>
+          What Is <span class="primary-span">Cryptocurrency </span>Lending?
+        </h1>
+        <p>
+          Cryptocurrency lending refers to the process of loaning fiat money or
+          a stable digital asset for a fixed period of time and an interest
+          rate. The lending process typically involves two or three parties: a
+          borrower, a lender, and a platform that connects both sides of the
+          transaction. However, there are certain platforms that act as a lender
+          themselves.
+        </p>
+      </div>
+      <!-- .container end -->
     </section>
     <section id="investment">
-        <div class="demo">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="pricingTable">
-                            <div class="pricingTable-header">
-                                <i class="fas fa-coins"></i>
-                                <div class="price-value"> 5,000 USDT +</div>
-                                <!-- <span class="month">per month</span> -->
-                            </div>
-                            <h3 class="heading">Basic</h3>
-                            <div class="pricing-content">
-                                <ul>
-                                </ul>
-                            </div>
-                            <div class="pricingTable-signup">
-                                <a id="five" href="#info">See More Details</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="pricingTable black">
-                            <div class="pricingTable-header">
-                                <svg width="52px" height="52px" viewBox="0 0 16 16" class="bi bi-cash-stack" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z"/>
-                                        <path fill-rule="evenodd" d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z"/>
-                                        <path d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
-                                      </svg>
-                                <div class="price-value"> 10,000 USDT +</div>
-                                <!-- <span class="month">per month</span>  -->
-                            </div>
-                            <h3 class="heading">Standard</h3>
-                            <div class="pricing-content">
-                                <ul>
-                                </ul>
-                            </div>
-                            <div class="pricingTable-signup">
-                                <a id="ten" href="#info">See More Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="pricingTable ">
-                            <div class="pricingTable-header">
-                                <div class="image-div">
-                                    <div class="imagee">
-                                    </div>
-                                </div>
-                                <div class="price-value"> 20,000 USDT +</div>
-                                <!-- <span class="month">per month</span>  -->
-                            </div>
-                            <h3 class="heading">Gold</h3>
-                            <div class="pricing-content">
-                                <ul>
-                                </ul>
-                            </div>
-                            <div class="pricingTable-signup">
-                                <a id="twenty" href="#info">See More Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="pricingTable black">
-                            <div class="pricingTable-header">
-                                <i class="fa fa-diamond"></i>
-                                <div class="price-value"> 50,000 USDT +</div>
-                                <!-- <span class="month">per month</span>  -->
-                            </div>
-                            <h3 class="heading">Diamond</h3>
-                            <div class="pricing-content">
-                                <ul>
-                                </ul>
-                            </div>
-                            <div class="pricingTable-signup">
-                                <a id="fifty" href="#info">See More Details</a>
-                            </div>
-                        </div>
-                    </div>
+      <div class="demo">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3 col-sm-6">
+              <div class="pricingTable">
+                <div class="pricingTable-header">
+                  <i class="fas fa-coins"></i>
+                  <div class="price-value">5,000 USDT +</div>
+                  <!-- <span class="month">per month</span> -->
                 </div>
+                <h3 class="heading">Basic</h3>
+                <div class="pricing-content">
+                  <ul></ul>
+                </div>
+                <div class="pricingTable-signup">
+                  <a id="five" href="#info">See More Details</a>
+                </div>
+              </div>
             </div>
+
+            <div class="col-md-3 col-sm-6">
+              <div class="pricingTable black">
+                <div class="pricingTable-header">
+                  <svg
+                    width="52px"
+                    height="52px"
+                    viewBox="0 0 16 16"
+                    class="bi bi-cash-stack"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z" />
+                    <path
+                      fill-rule="evenodd"
+                      d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z"
+                    />
+                    <path
+                      d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"
+                    />
+                  </svg>
+                  <div class="price-value">10,000 USDT +</div>
+                  <!-- <span class="month">per month</span>  -->
+                </div>
+                <h3 class="heading">Standard</h3>
+                <div class="pricing-content">
+                  <ul></ul>
+                </div>
+                <div class="pricingTable-signup">
+                  <a id="ten" href="#info">See More Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="pricingTable">
+                <div class="pricingTable-header">
+                  <div class="image-div">
+                    <div class="imagee"></div>
+                  </div>
+                  <div class="price-value">20,000 USDT +</div>
+                  <!-- <span class="month">per month</span>  -->
+                </div>
+                <h3 class="heading">Gold</h3>
+                <div class="pricing-content">
+                  <ul></ul>
+                </div>
+                <div class="pricingTable-signup">
+                  <a id="twenty" href="#info">See More Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="pricingTable black">
+                <div class="pricingTable-header">
+                  <i class="fa fa-diamond"></i>
+                  <div class="price-value">50,000 USDT +</div>
+                  <!-- <span class="month">per month</span>  -->
+                </div>
+                <h3 class="heading">Diamond</h3>
+                <div class="pricing-content">
+                  <ul></ul>
+                </div>
+                <div class="pricingTable-signup">
+                  <a id="fifty" href="#info">See More Details</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <style>
-
-        </style>
-        <section id="info">
-            <div class="info">
-                <a href="#info" id="close-btn" class="close">X</a>
-                <h1 class="info-h1">hello</h1>
-                <div class="container">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
-                            <thead class="table__head">
-                                <tr class="winner__table">
-                                    <th></th>
-                                    <th>intrest rate %</th>
-                                    <th>total intrest</th>
-                                    <th>USDT (tethers) Monthly Withdrawal fees %</th>
-                                    <th>USD (Cash) Monthly Withdrawal fees %</th>
-                                    <th>USDT (tethers) Final total Withdrawal fees %</th>
-                                    <th>USD (Cash) Final total Withdrawal fees %</th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-body">
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+      </div>
+      <style></style>
+      <section id="info">
+        <div class="info">
+          <a href="#info" id="close-btn" class="close">X</a>
+          <h1 class="info-h1">hello</h1>
+          <div class="container">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped">
+                <thead class="table__head">
+                  <tr class="winner__table">
+                    <th></th>
+                    <th>intrest rate %</th>
+                    <th>total intrest</th>
+                    <th>USDT (tethers) Monthly Withdrawal fees %</th>
+                    <th>USD (Cash) Monthly Withdrawal fees %</th>
+                    <th>USDT (tethers) Final total Withdrawal fees %</th>
+                    <th>USD (Cash) Final total Withdrawal fees %</th>
+                  </tr>
+                </thead>
+                <tbody class="table-body"></tbody>
+              </table>
             </div>
-            <br><br>
-        </section>
+          </div>
+        </div>
+        <br /><br />
+      </section>
     </section>
     <!-- #service2 end -->
     <section id="risk">
-        <div class="container">
-            <h1><span class="primary-span">Risk</span> Management</h1>
-            <div class="primary-li">
-                <div>
-                    <i class="icon fas fa-hand-holding-usd fa-3x"></i>
-                    <p>All loans provided on the platform are secured using the borrower's crypto collateral (e.g., Bitcoin, Ethereum, or other crypto assets). During the loan term, the crypto collateral is stored in our safe Xpaychain Vault.</p>
-                </div>
-                <div>
-                    <i class="icon fab fa-teamspeak  fa-3x"></i>
-                    <p>paychain Analyzers team is responsible of cryptocurrency market in a different time frames, this guides traders to doing their trades accurately and safely, ultimately this results in proven profit.</p>
-                </div>
-                <div>
-                    <i class="fas fa-user-tie fa-3x icon"></i>
-                    <p> An expert, high level of trader’s team is working 24/7, available to guarantee the growth of all loaner’s wealth.</p>
-                </div>
-                <div>
-                    <i class="icon fas fa-user-shield fa-3x"></i>
-                    <p>All transactions are done through a secure platform and also the company's security team supervises every transaction, regardless of whether it is small, medium or large.</p>
-                </div>
-            </div>
+      <div class="container">
+        <h1><span class="primary-span">Risk</span> Management</h1>
+        <div class="primary-li">
+          <div>
+            <i class="icon fas fa-hand-holding-usd fa-3x"></i>
+            <p>
+              All loans provided on the platform are secured using the
+              borrower's crypto collateral (e.g., Bitcoin, Ethereum, or other
+              crypto assets). During the loan term, the crypto collateral is
+              stored in our safe Xpaychain Vault.
+            </p>
+          </div>
+          <div>
+            <i class="icon fab fa-teamspeak fa-3x"></i>
+            <p>
+              paychain Analyzers team is responsible of cryptocurrency market in
+              a different time frames, this guides traders to doing their trades
+              accurately and safely, ultimately this results in proven profit.
+            </p>
+          </div>
+          <div>
+            <i class="fas fa-user-tie fa-3x icon"></i>
+            <p>
+              An expert, high level of trader’s team is working 24/7, available
+              to guarantee the growth of all loaner’s wealth.
+            </p>
+          </div>
+          <div>
+            <i class="icon fas fa-user-shield fa-3x"></i>
+            <p>
+              All transactions are done through a secure platform and also the
+              company's security team supervises every transaction, regardless
+              of whether it is small, medium or large.
+            </p>
+          </div>
         </div>
+      </div>
     </section>
     <section id="about">
-        <div class="container">
-
-            <h1>About Us</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores cupiditate architecto eaque natus porro inventore adipisci modi, reprehenderit culpa cum maiores sequi fuga quia aperiam impedit fugit dolorem, itaque facilis cumque minus,
-                dolores rem eligendi illum praesentium! Expedita obcaecati sapiente neque quis ab enim ea ipsum, blanditiis voluptates delectus voluptatem!</p>
-        </div>
+      <div class="container">
+        <h1>About Us</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
+          cupiditate architecto eaque natus porro inventore adipisci modi,
+          reprehenderit culpa cum maiores sequi fuga quia aperiam impedit fugit
+          dolorem, itaque facilis cumque minus, dolores rem eligendi illum
+          praesentium! Expedita obcaecati sapiente neque quis ab enim ea ipsum,
+          blanditiis voluptates delectus voluptatem!
+        </p>
+      </div>
     </section>
 
     <section id="contact-infoo" class="bg-dark">
-        <div class="card card-black ">
-            <i class="fas fa-map-marker-alt fa-3x"></i>
-            <h3>Location</h3>
-            <p>50 Main st, Boston MA</p>
-        </div>
-        <div class="card card-primary">
-            <i class="fas fa-phone fa-3x"></i>
-            <h3>Phone Number</h3>
-            <p>(617) 555-5555</p>
-        </div>
-        <div class="card card-black ">
-            <i class="fas fa-envelope fa-3x"></i>
-            <h3>Email Address</h3>
-            <p>Fardo@Bitcoin.com</p>
-        </div>
+      <div class="card card-black">
+        <i class="fas fa-map-marker-alt fa-3x"></i>
+        <h3>Location</h3>
+        <p>50 Main st, Boston MA</p>
+      </div>
+      <div class="card card-primary">
+        <i class="fas fa-phone fa-3x"></i>
+        <h3>Phone Number</h3>
+        <p>(617) 555-5555</p>
+      </div>
+      <div class="card card-black">
+        <i class="fas fa-envelope fa-3x"></i>
+        <h3>Email Address</h3>
+        <p>Fardo@Bitcoin.com</p>
+      </div>
     </section>
     {% include "js_home.html" %} {% endblock content %}
     <!-- 
     <footer>
         <p>Copyrights &copy; 2020</p>
     </footer> -->
-    <div class=" bitcoin-tracker">
-        <div class="container-fluid pr-0 pl-0">
-            <coingecko-coin-price-marquee-widget coin-ids="bitcoin,ethereum,litecoin" currency="usd" background-color="#ffffff" locale="en"></coingecko-coin-price-marquee-widget>
-        </div>
-    </div>
     <!--Start of Tawk.to Script-->
     <!-- <script type="text/javascript">
         var Tawk_API = Tawk_API || {},
@@ -267,6 +388,5 @@
     <script type='text/javascript'></script>
     <script src="assets/js/smoothScroll.js"></script>
     <script src="assets/js/rsconfig.js"></script> -->
-</body>
-
+  </body>
 </html>

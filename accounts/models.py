@@ -29,7 +29,7 @@ class User(AbstractUser):
         choices=plans,
         default=no_plan,
     )
-    amount          = models.IntegerField(blank=True,null=True,default=0)
+    amount          = models.DecimalField(blank=True,null=True,default=0,verbose_name='Balance',max_digits=99999999,decimal_places=2)
     # date_joined   = models.DateField(default = timezone.now, blank = True)
     date_joind      = models.DateTimeField(verbose_name='date joined',auto_now_add=True)
     trans =models.URLField(verbose_name='Transactions',max_length=250)
@@ -38,27 +38,30 @@ class User(AbstractUser):
         return format_html(
             '<a href="{}">Transactions</a>',
             self.trans,)
+    is_trader = models.BooleanField(default=False, verbose_name='Trader')
+    is_invester = models.BooleanField(default=False, verbose_name='Invester')
+    api_key = models.CharField(max_length=255,blank=True)
+    api_secret = models.CharField(max_length=255,blank=True)
     # trans_url.allow_tags = True
 
 class Transactions(models.Model):
-    user        = models.ForeignKey(User,on_delete=models.CASCADE)
+    user                = models.ForeignKey(User,on_delete=models.CASCADE)
     # phone = models.ForeignKey(User,on_delete=models.DO_NOTHING)
-    withdrawll  = 'withdrawll'
-    deposit  = 'deposit'
+    withdrawll          = 'withdrawll'
+    deposit             = 'deposit'
     transaction_type_choices = [
         (withdrawll,'withdrawll'),
         (deposit,'deposit'),
     ]
 
-    transaction_type = models.CharField(
+    transaction_type    = models.CharField(
         max_length=20, 
         choices=transaction_type_choices)
 
-    transaction_amount = models.IntegerField(blank=True)
-    transaction_date      = models.DateTimeField(verbose_name='Transaction Date',auto_now_add=True)
-    # transaction_date = models.DateField(default=timezone.now,blank=True)
+    transaction_amount  = models.DecimalField(blank = True,decimal_places=2,max_digits=9999999)
+    transaction_date    = models.DateTimeField(verbose_name='Transaction Date',auto_now_add=True)
     transaction_complete = models.BooleanField(default=False)
-    acc_balance = models.IntegerField(verbose_name='Account balance after that transaction',blank=True,null=True)
+    acc_balance         = models.DecimalField(verbose_name='Account balance after that transaction',blank=True,null=True,decimal_places = 2,max_digits=99999999)
     def username(self):
         c_user = User.objects.get(username=self.user)
         if not self.transaction_complete:
@@ -74,7 +77,32 @@ class Transactions(models.Model):
             raise ValidationError("withdrawll cant be positive value")
         if self.transaction_amount <= 0 and self.transaction_type == 'deposit':
             raise ValidationError("Deposit cant be Zero or negative value")
+
+class Trades(models.Model):
+    user            = models.ForeignKey(User,on_delete = models.CASCADE)
+    buy             = 'Long'
+    sell            = 'Short'
+    postion_types   = [
+        (buy,'Long'),
+        (sell,'Short')
+    ]
+    running         = 'Running'
+    closed         = 'Closed'
+    trade_statuss = [
+        (running, 'Running'),
+        (closed, 'Closed')
+        ]
+    postion         = models.CharField(max_length = 50,choices = postion_types,blank=True, null=True)
+    lot_size        = models.DecimalField(blank=True, null=True, verbose_name = 'Lot size',decimal_places=15,max_digits=100)
+    trade_price     = models.DecimalField(blank=True, null=True, verbose_name = "Trade Price",decimal_places=15,max_digits=100)
+    symbol          = models.CharField(max_length = 22)
+    trade_date      = models.DateTimeField(verbose_name = 'Date',auto_now_add = True)
+    trade_status    = models.CharField(max_length = 25,choices = trade_statuss,blank=True, null=True)
+    profit          = models.DecimalField(blank=True, null=True, verbose_name="Profit",decimal_places=2,max_digits=1000000)
+
+
     
+
     
 
 

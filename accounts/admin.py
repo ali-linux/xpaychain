@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User,Transactions
+from .models import User,Transactions,Trades
 from django import forms
 from django.forms import ValidationError
 
@@ -13,7 +13,7 @@ UserAdmin.list_filter            += ('subscribed',)
 UserAdmin.add_fieldsets +=((None,{'fields':('email','phone','first_name','last_name')}),)
 
 # when you want to edit user fields
-UserAdmin.fieldsets +=((None,{'fields':('phone','main_image','plan','amount'
+UserAdmin.fieldsets +=((None,{'fields':('phone','main_image','plan','amount','is_trader','is_invester','api_key','api_secret'
 )}),)
 
 
@@ -36,9 +36,12 @@ class TransactionsAdmin(admin.ModelAdmin):
     fieldsets = ((None,{'fields':('user','transaction_type','transaction_amount')}),)
 
     
-
+class TradesAdmin(admin.ModelAdmin):
+    list_display = ['user','symbol','lot_size']
+    fieldsets = ((None,{'fields':('user','symbol','lot_size','trade_price')}),)
 
 
 
 admin.site.register(Transactions,TransactionsAdmin)
 admin.site.register(User, UserAdmin)
+admin.site.register(Trades,TradesAdmin)

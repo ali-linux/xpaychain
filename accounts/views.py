@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404,HttpResponse
 from django.contrib import messages,auth
-from .models import User
+from .models import User,Trades
 from .models import Transactions
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
@@ -9,6 +9,9 @@ from django.core.files.storage import FileSystemStorage
 import secrets
 from datetime import datetime
 from django.utils import timezone
+from . import config_api
+from binance.client import Client
+from binance.enums import *
 def login(request):
     #CHECK IF THE SUBIMTED FORM IS A POST REQUEST NOT A GET REQUEST
     if request.user.is_authenticated:
@@ -176,7 +179,8 @@ def dashboard(request):
         # u = User.objects.get(username=request.user)
         trans = Transactions.objects.all()
         trans_query = trans.filter(user=request.user)
-        context = {"trans_query":trans_query}
+        api = request.user.api_secret
+        context = {"trans_query":trans_query,'api':api}
         return render(request, 'accounts/user_dashboard.html',context)
 
 @login_required
@@ -189,3 +193,56 @@ def logout(request):
             return redirect('dashboard')
     else:
         return redirect('index')
+
+@login_required
+def trading(request):
+    if request.user.is_authenticated:
+        if request.user.is_trader:
+            user_api__secret_key = request.user.api_secret
+            user_api_key =request.user.api_key
+            client = Client(user_api_key,user_api__secret_key)
+            info = client.get_account()
+            exchange_info = client.get_exchange_info()
+            symbols = exchange_info['symbols']        
+            balance = info['balances']
+            all_symbols = []
+            for symbol in symbols:
+                all_symbols.append(symbol['symbol']) 
+            context = {'balance':balance, 'symbols':all_symbols, 'info':exchange_info}
+            return render(request,'accounts/trading.html',context)
+        else:
+            return redirect('dashboard')
+    else:
+        return redirect('login')
+
+@login_required
+def buy(request):
+        if request.user.is_authenticated:
+            if request.method == 'POST':
+                client = Client(config_api.API_KEY,config_api.API_SECRET)
+                symbol = request.POST['symbol']
+                amount = request.POST['amount']
+                order = client.create_test_order(
+                    symbol=symbol,
+                    side=SIDE_BUY,
+                    type=ORDER_TYPE_MARKET,
+                    quantity=amount)
+                context = {'amount':amount, 'symbol':symbol, 'order':order}
+                messages.success(request,'your order has been placed')
+                amount = float(amount)
+                trade = Trades(user=request.user,symbol=symbol,lot_size=amount)
+                trade.save()
+                return redirect('trading')
+            else:
+                messages.error(request,'fuckkkkkk')
+                return redirect('trading')
+        else:
+            messages.error(request,'trade was not succesful')
+            return redirect('login')
+
+@login_required
+def sell(request):
+        if request.user.is_authenticated:
+            pass
+        else:
+            return redirect('login')

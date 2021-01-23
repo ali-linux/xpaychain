@@ -1,0 +1,83 @@
+{% extends "base.html" %} {% load static %}
+
+
+<body>
+    {% block content %}
+    <style>
+        .chart {
+            padding: 50px;
+        }
+    </style>
+    <!-- TradingView Widget BEGIN -->
+    <div class="container" style='margin-top:50px'>
+        {% include "_alerts.html" %}
+
+    </div>
+    <div class="chart">
+        <div class="tradingview-widget-container">
+            <div id="tradingview_b8695"></div>
+            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BTCUSDT/?exchange=BINANCE" rel="noopener" target="_blank"><span class="blue-text">BTCUSDT Chart</span></a> by TradingView</div>
+            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+            <script type="text/javascript">
+                new TradingView.widget({
+                    "width": 1300,
+                    "height": 810,
+                    "symbol": "BINANCE:BTCUSDT",
+                    "interval": "D",
+                    "timezone": "Etc/UTC",
+                    "theme": "light",
+                    "style": "1",
+                    "locale": "en",
+                    "toolbar_bg": "#f1f3f6",
+                    "enable_publishing": false,
+                    "hide_side_toolbar": false,
+                    "allow_symbol_change": true,
+                    "watchlist": [
+                        "BINANCE:ETHUSDT",
+                        "BINANCE:LTCUSDT",
+                        "BINANCE:BTCUSDT"
+                    ],
+                    "details": true,
+                    "studies": [
+                        "MASimple@tv-basicstudies",
+                        "RSI@tv-basicstudies"
+                    ],
+                    "container_id": "tradingview_b8695"
+                });
+            </script>
+        </div>
+    </div>
+    <div class="order-book container">
+        <h1>
+            {{user.amount}} {{user.first_name}} {{user.last_name}}
+        </h1>
+        <h1>
+        </h1>
+        <th>
+            <td>
+                <h5>balance</h5>
+            </td>
+            <td>
+                <h5>{{user.amount}}</h5>
+            </td>
+        </th>
+        <form action="{% url 'buy' %}" method="POST">
+            {% csrf_token %}
+            <select id="symbol" name="symbol">
+                    {% for symbol in symbols %}
+                        <option>{{ symbol }}</option>
+                    {% endfor %}
+                </select>
+            <label for="amount">amount</label>
+            <input type='number' step="any" placeholder="Amount" name="amount">
+            <button type="submit">buy</button>
+        </form>
+        <div id="exxample-table"></div>
+        <br><br><br>
+    </div>
+    <link href="{% static 'tabulator-master/dist/css/tabulator.min.css' %}" rel="stylesheet">
+    <script type="text/javascript" src=' {% static "tabulator-master/dist/js/tabulator.min.js" %}'></script>
+    <script src="{% static 'assets/js/table_trade.js' %}"></script>
+    <!-- TradingView Widget END -->
+    {%endblock content%}
+</body>

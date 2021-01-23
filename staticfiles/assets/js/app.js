@@ -27,58 +27,41 @@ function more_info(amount) {
 
 
     if (amount === 5000) {
-        plan.textContent = '$5,000 + ';
+        plan.textContent = '5,000 USDT + ';
 
         tbody.innerHTML =
             `
         <tr class="winner__table">
-        <td>intrest rate %</td>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-            <td>8.5</td>
-        </tr>
-        <tr class="winner__table">
-            <td>total intrest</td>
-            <td>300</td>
-            <td>2,100</td>
-            <td>4,800</td>
-            <td>10,200</td>
+        <td>6 month</td>
+        <td>7</td> 
+        <td>2,100</td>
+        <td>1</td>
+        <td>3</td>
+        <td>0.5</td>
+        <td>1.5</td>
             </tr>
         <tr class="winner__table">
-            <td>USDT (tethers) Monthly Withdrawal fees %</td>
-            <td>1.5</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
+        <td>12 month</td>
+        <td>8</td> 
+        <td>4,800</td>
+        <td>1</td>
+        <td>3</td>
+        <td>0.5</td>
+        <td>1.5</td>
         </tr>
         <tr class="winner__table">
-            <td>USD (Cash) Monthly Withdrawal fees %</td>
-            <td>3.3</td>
-            <td>3</td>
-            <td>3</td>
-            <td>3</td>
+        <td>24 month</td>
+        <td>8.5</td> 
+        <td>10,200</td>
+        <td>1</td>
+        <td>3</td>
+        <td>0.5</td>
+        <td>1.5</td>
         </tr>
-
-        <tr class="winner__table">
-            <td>USDT (tethers) Final total Withdrawal fees %</td>
-            <td>1.5</td>
-            <td>0.5</td>
-            <td>0.5</td>
-            <td>0.5</td>
-        </tr>
-        <tr class="winner__table">
-            <td>USD (Cash) Final total Withdrawal fees %</td>
-            <td>3.3</td>
-            <td>1.5</td>
-            <td>1.5</td>
-            <td>1.5</td>
-        </tr>
-        
         `;
     }
     if (amount === 10000) {
-        plan.textContent = '$10,000 + ';
+        plan.textContent = '10,000 USDT + ';
         tbody.innerHTML =
             `
     <tr class="winner__table">
@@ -129,7 +112,7 @@ function more_info(amount) {
 
     }
     if (amount === 20000) {
-        plan.textContent = '$20,000 + ';
+        plan.textContent = '20,000 USDT + ';
 
         tbody.innerHTML =
             `
@@ -181,7 +164,7 @@ function more_info(amount) {
 
     }
     if (amount === 50000) {
-        plan.textContent = '$50,000 + ';
+        plan.textContent = '50,000 USDT + ';
         tbody.innerHTML =
             `
     <tr class="winner__table">

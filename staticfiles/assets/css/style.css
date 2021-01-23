@@ -180,6 +180,7 @@ a {
 }
 
 .pricingTable {
+    font-family: 'Open Sans Condensed', sans-serif;
     text-align: center;
     background: #fff;
     margin: 0 -15px;
@@ -197,6 +198,7 @@ a {
 }
 
 .pricingTable .pricingTable-header {
+    font-family: 'Open Sans Condensed', sans-serif;
     padding: 40px 0;
     background: #f5f6f9;
     border-radius: 10px 10px 50% 50%;
@@ -217,7 +219,8 @@ a {
 }
 
 .pricingTable .price-value {
-    font-size: 35px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 40px;
     color: #ff9624;
     transition: all .5s ease 0s
 }
@@ -257,10 +260,11 @@ a {
 }
 
 .pricingTable .heading {
-    font-size: 24px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 50px;
     color: #ff9624;
-    margin: 30px 0;
-    text-transform: uppercase
+    margin: 50px 0;
+    text-transform: uppercase;
 }
 
 .pricingTable .pricing-content ul {
@@ -276,14 +280,16 @@ a {
 }
 
 .pricingTable .pricingTable-signup a {
+    font-family: 'Open Sans Condensed', sans-serif;
     display: inline-block;
-    font-size: 15px;
+    font-size: 20px;
+    font-weight: 600;
     color: #fff;
     padding: 10px 35px;
     border-radius: 20px;
     background: #ffa442;
     text-transform: uppercase;
-    transition: all .3s ease 0s
+    transition: all .2s ease;
 }
 
 .pricingTable .pricingTable-signup a:hover {
@@ -293,6 +299,7 @@ a {
 
 .pricingTable.black .heading,
 .pricingTable.black .price-value {
+    font-size: 40px;
     color: #161618
 }
 
@@ -307,6 +314,7 @@ a {
 
 .pricingTable.black .heading,
 .pricingTable.black .price-value {
+    font-size: 40px;
     color: #161618
 }
 
@@ -336,7 +344,11 @@ a {
 .pricingTable.orange:hover .price-value,
 .pricingTable.black:hover .price-value,
 .pricingTable.black:hover .price-value {
-    color: #fff
+    color: #fff;
+}
+
+#investment.price-value {
+    font-size: 5px;
 }
 
 @media screen and (max-width:990px) {
@@ -445,6 +457,7 @@ a {
 }
 
 #info {
+    font-family: 'Open Sans Condensed', sans-serif;
     z-index: 90000;
     position: fixed;
     top: 0;
@@ -468,23 +481,29 @@ a {
 }
 
 #info .info {
+    font-family: 'Open Sans Condensed', sans-serif;
     position: fixed;
     z-index: 900000;
     background: #ffffff;
     opacity: 1;
     text-align: center;
+    padding: 0;
+    margin: 0;
 }
 
 .table {
     overflow-x: scroll;
+    width: 100%;
+    height: 100%;
 }
 
 .info-h1 {
-    color: #ffffff;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #161618;
     display: inline-block;
-    background: #ff9624;
+    /* background: #ff9624; */
     padding: 10px 20px;
-    border: 1px solid #fbac47;
+    /* border: 1px solid #fbac47; */
     text-align: center;
     width: 300px;
     border-radius: 100px;
@@ -502,13 +521,15 @@ a {
     background: -moz-linear-gradient(-45deg, #fbac47 0%, #feb756 100%);
     background: -webkit-linear-gradient(-45deg, #ff9624 0%, #ffa442 100%);
     background: linear-gradient(135deg, #ffc527 0%, #fbac47 100%);
-    white-space: nowrap;
+    white-space: wrap;
 }
 
 .table-bordered td,
 .table-bordered th {
+    font-family: 'Open Sans Condensed', sans-serif;
     border: 0px solid #FFF;
     font-size: 18px;
+    white-space: wrap;
 }
 
 .coin {
@@ -2209,7 +2230,11 @@ a {
 #user_dashboard .account-balance {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+
+#user_dashboard .account-balance .account-information h2 {
+    margin-top: 15px;
 }
 
 #user_dashboard .account-balance {
@@ -2217,7 +2242,7 @@ a {
 }
 
 #user_dashboard .account-balance h3,
-#user_dashboard .account-balance h1 {
+#user_dashboard .account-balance h2 {
     text-align: center;
 }
 
@@ -2770,4 +2795,28 @@ footer p {
 #register h1 {
     font-size: 35px;
     right: 50%;
+}
+
+.account-information img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center right;
+}
+
+.account-information,
+.account-balance-account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-options {
+    overflow: scroll;
+}
+
+.trans-list li {
+    font-size: 18px;
+    margin-bottom: 10px;
 }
