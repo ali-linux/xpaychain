@@ -63,7 +63,7 @@ def register(request):
             upload_file = fs.url(pic_file)
             pic_bool = True
         except :
-            print('no picture')
+            pass
         if password != password2:
             messages.error(request,'passwords dont match')
             return redirect('register')
@@ -246,3 +246,7 @@ def sell(request):
             pass
         else:
             return redirect('login')
+
+def withdrawl(request):
+    
+    return render(request,'accounts/withdrawl.html')

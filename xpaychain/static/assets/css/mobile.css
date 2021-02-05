@@ -1,358 +1,365 @@
-    h1 {
-        font-size: 31px;
-        line-height: 40px;
-    }
-    
-    h3 {
-        font-size: 20px;
-        line-height: 25px;
-    }
-    
-    ul {
-        padding: 0 30px;
-    }
-    
-    #menuToggle {
-        display: block;
-        position: fixed;
-        color: #f3f3f3;
-        top: 27px;
-        left: 40px;
-        z-index: 1;
-        -webkit-user-select: none;
-        user-select: none;
-    }
-    
-    .table {
-        overflow-x: scroll;
-    }
-    
-    #info .info {
-        width: 100%;
-        height: 700px;
-        overflow-y: scroll;
-    }
-    
-    .table-bordered td,
-    .table-bordered th {
-        font-size: 11px;
-    }
-    
-    .table-bordered {
-        overflow-y: scroll;
-    }
-    
-    #menuToggle a {
-        text-decoration: none;
-        color: #232323;
-        transition: color 0.3s ease;
-    }
-    
-    #menuToggle form input {
-        background: #232323;
-        width: 200px;
-        height: 50px;
-        margin: 0;
-        padding: 0;
-        font-size: 22px;
-        padding-right: 120px;
-    }
-    
-    #menuToggle a:hover {
-        color: orange;
-    }
-    
-    #menuToggle #menu-check {
-        display: block;
-        width: 40px;
-        height: 32px;
-        position: absolute;
-        top: -7px;
-        cursor: pointer;
-        opacity: 0;
-        /* hide this */
-        z-index: 2;
-        /* and place it over the hamburger */
-        -webkit-touch-callout: none;
-    }
-    
-    header {
-        position: fixed;
-        width: 100%;
-        height: 90px;
-        background: #232323;
-        z-index: 20000;
-    }
-    /*
+h1 {
+  font-size: 31px;
+  line-height: 40px;
+}
+
+h3 {
+  font-size: 20px;
+  line-height: 25px;
+}
+
+ul {
+  padding: 0 30px;
+}
+
+#menuToggle {
+  display: block;
+  position: fixed;
+  color: #f3f3f3;
+  top: 27px;
+  left: 40px;
+  z-index: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.table {
+  overflow-x: scroll;
+}
+
+#info .info {
+  width: 100%;
+  height: 700px;
+  overflow-y: scroll;
+}
+
+.table-bordered td,
+.table-bordered th {
+  font-size: 11px;
+}
+
+.table-bordered {
+  overflow-y: scroll;
+}
+
+#menuToggle a {
+  text-decoration: none;
+  color: #232323;
+  transition: color 0.3s ease;
+}
+
+#menuToggle form input {
+  background: #232323;
+  width: 200px;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  font-size: 22px;
+  padding-right: 120px;
+}
+
+#menuToggle a:hover {
+  color: orange;
+}
+
+#menuToggle #menu-check {
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  cursor: pointer;
+  opacity: 0;
+  /* hide this */
+  z-index: 2;
+  /* and place it over the hamburger */
+  -webkit-touch-callout: none;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  height: 90px;
+  background: #232323;
+  z-index: 20000;
+}
+/*
  * Just a quick hamburger
  */
-    
-    #menuToggle span {
-        color: #f3f3f3;
-        display: block;
-        width: 33px;
-        height: 4px;
-        margin-bottom: 5px;
-        position: relative;
-        background: #cdcdcd;
-        border-radius: 3px;
-        z-index: 1;
-        transform-origin: 4px 0px;
-        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease;
-    }
-    
-    #menuToggle span:first-child {
-        transform-origin: 0% 0%;
-    }
-    
-    #menuToggle span:nth-last-child(2) {
-        transform-origin: 0% 100%;
-    }
-    /* 
+
+#menuToggle span {
+  color: #f3f3f3;
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  background: #cdcdcd;
+  border-radius: 3px;
+  z-index: 1;
+  transform-origin: 4px 0px;
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+}
+
+#menuToggle span:first-child {
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+  transform-origin: 0% 100%;
+}
+/* 
  * Transform all the slices of hamburger
  * into a crossmark.
  */
-    
-    #menuToggle #menu-check:checked~span {
-        opacity: 1;
-        transform: rotate(45deg) translate(-2px, -1px);
-        background: #f3f3f3;
-    }
-    
-    #menuToggle #menu-check:checked~span:nth-last-child(3) {
-        opacity: 0;
-        transform: rotate(0deg) scale(0.2, 0.2);
-    }
-    /*
+
+#menuToggle #menu-check:checked ~ span {
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #f3f3f3;
+}
+
+#menuToggle #menu-check:checked ~ span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+/*
  * Ohyeah and the last one should go the other direction
  */
-    
-    #menuToggle #menu-check:checked~span:nth-last-child(2) {
-        transform: rotate(-45deg) translate(0, -1px);
-    }
-    /*
+
+#menuToggle #menu-check:checked ~ span:nth-last-child(2) {
+  transform: rotate(-45deg) translate(0, -1px);
+}
+/*
  * Make this absolute positioned
  * at the top left of the screen
  */
-    
-    #menu {
-        display: block;
-        position: fixed;
-        width: 100vh;
-        margin: -100px 0 0 -50px;
-        padding: 50px;
-        height: 110vh;
-        padding-top: 125px;
-        background: #232323;
-        /* opacity: 0.9; */
-        list-style-type: none;
-        -webkit-font-smoothing: antialiased;
-        /* to stop flickering of text in safari */
-        transform-origin: 0% 0%;
-        transform: translate(-100%, 0);
-        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-    }
-    
-    #menu ul {
-        display: flex;
-        flex-direction: column;
-    }
-    
-    #menu li,
-    #menu li a {
-        padding: 10px 0;
-        font-size: 22px;
-        color: #f3f3f3;
-        transition: color 0.3s ease;
-    }
-    
-    #menu li:hover {
-        transition: color 0.5s ease;
-        color: orange;
-    }
-    
-    #menu li:after {
-        margin: 0;
-    }
-    
-    #menu #logout-li {
-        width: 100px;
-        padding: 0;
-    }
-    /*
+
+#menu {
+  display: block;
+  position: fixed;
+  width: 100vh;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  height: 110vh;
+  padding-top: 125px;
+  background: #232323;
+  /* opacity: 0.9; */
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
+
+#menu ul {
+  display: flex;
+  flex-direction: column;
+}
+
+#menu li,
+#menu li a {
+  padding: 10px 0;
+  font-size: 22px;
+  color: #f3f3f3;
+  transition: color 0.3s ease;
+}
+
+#menu li:hover {
+  transition: color 0.5s ease;
+  color: orange;
+}
+
+#menu li:after {
+  margin: 0;
+}
+
+#menu #logout-li {
+  width: 100px;
+  padding: 0;
+}
+/*
  * And let's slide it in from the left
  */
-    
-    #menuToggle input:checked~ul {
-        transform: none;
-    }
-    
-    #menu .mob,
-    #menu .mob a {
-        display: none;
-    }
-    
-    #service .container .content {
-        display: flex;
-        flex-direction: column;
-    }
-    
-    #service .container .content h3,
-    #service .container .content h1 {
-        text-align: center;
-    }
-    
-    #service .container .content .bitcoin-converter {
-        align-self: center;
-    }
-    
-    #contact-infoo {
-        flex-direction: column;
-    }
-    
-    .pc,
-    .pc a {
-        display: flex;
-    }
-    
-    .payment {
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .payment button {
-        margin: 15px 5px;
-    }
-    
-    .payment h3 {
-        text-align: center;
-    }
-    
-    .bitcoin-chart {
-        display: none;
-    }
-    
-    #risk .primary-li div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        margin: 0;
-        padding: 30px;
-        width: 100vw;
-    }
-    
-    #risk .primary-li div .icon {
-        margin: 0;
-        margin-bottom: 30px;
-    }
-    
-    #risk,
-    #risk .container {
-        padding: 0;
-        margin: 0;
-    }
-    
-    #risk .primary-li div:nth-child(even) {
-        background: orange;
-        color: #333333;
-    }
-    
-    #risk .primary-li div:nth-child(even) .icon {
-        color: #161618;
-    }
-    
-    #risk h1 {
-        width: 100vw;
-        text-align: center;
-        /* padding: 20px; */
-        margin-top: 80px;
-    }
-    
-    #contact-infoo .card:nth-child(odd) {
-        background: #ffffff;
-        color: #161618;
-    }
-    
-    #contact-infoo .card-black h3,
-    #contact-infoo .card-black p {
-        color: #161618;
-        background: #ffffff;
-    }
-    
-    #register .register-area {
-        flex-direction: column-reverse;
-    }
-    
-    #register .container {
-        height: 2250px;
-    }
-    
-    #register h1 {
-        font-size: 20px;
-    }
-    
-    #register {
-        height: 2500px;
-    }
-    
-    #register .conditions ul {
-        font-size: 16px;
-    }
-    
-    #register .conditions ul li {
-        padding: 20px 5px;
-        border-bottom: 1px solid #ccc;
-    }
-    
-    #register .conditions ul li:last-child {
-        border: none;
-    }
-    
-    #register form label {
-        font-size: 17px;
-    }
-    
-    #register form ::placeholder {
-        font-size: 14px;
-    }
-    
-    #register .pass-div input {
-        width: 98%;
-    }
-    
-    #user_dashboard .account-info {
-        flex-direction: column;
-    }
-    
-    #user_dashboard .account-balance,
-    #user_dashboard .user-options {
-        margin: 20px 0;
-    }
-    
-    #user_dashboard .account-balance img {
-        height: 200px;
-        object-fit: cover;
-        margin-bottom: 10px;
-    }
-    
-    #user_dashboard .account-balance {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    #user_dashboard .account-balance .account-information {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-    
-    #user_dashboard .user-options .btn {
-        padding: 10px;
-        font-size: 14px;
-    }
-    
-    #user_dashboard h1 {
-        font-size: 25px;
-    }
+
+#menuToggle input:checked ~ ul {
+  transform: none;
+}
+
+#menu .mob,
+#menu .mob a {
+  display: none;
+}
+
+#service .container .content {
+  display: flex;
+  flex-direction: column;
+}
+
+#service .container .content h3,
+#service .container .content h1 {
+  text-align: center;
+}
+
+#service .container .content .bitcoin-converter {
+  align-self: center;
+}
+
+#contact-infoo {
+  flex-direction: column;
+}
+
+.pc,
+.pc a {
+  display: flex;
+}
+
+.payment {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment button {
+  margin: 15px 5px;
+}
+
+.payment h3 {
+  text-align: center;
+}
+
+.bitcoin-chart {
+  display: none;
+}
+
+#risk .primary-li div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+  padding: 30px;
+  width: 100vw;
+}
+
+#risk .primary-li div .icon {
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+#risk,
+#risk .container {
+  padding: 0;
+  margin: 0;
+}
+
+#risk .primary-li div:nth-child(even) {
+  background: orange;
+  color: #333333;
+}
+
+#risk .primary-li div:nth-child(even) .icon {
+  color: #161618;
+}
+
+#risk h1 {
+  width: 100vw;
+  text-align: center;
+  /* padding: 20px; */
+  margin-top: 80px;
+}
+
+#contact-infoo .card:nth-child(odd) {
+  background: #ffffff;
+  color: #161618;
+}
+
+#contact-infoo .card-black h3,
+#contact-infoo .card-black p {
+  color: #161618;
+  background: #ffffff;
+}
+
+#register .register-area {
+  flex-direction: column-reverse;
+}
+
+#register .container {
+  height: 2250px;
+}
+
+#register h1 {
+  font-size: 20px;
+}
+
+#register {
+  height: 2500px;
+}
+
+#register .conditions ul {
+  font-size: 16px;
+}
+
+#register .conditions ul li {
+  padding: 20px 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+#register .conditions ul li:last-child {
+  border: none;
+}
+
+#register form label {
+  font-size: 17px;
+}
+
+#register form ::placeholder {
+  font-size: 14px;
+}
+
+#register .pass-div input {
+  width: 98%;
+}
+
+#user_dashboard .account-info {
+  flex-direction: column;
+}
+
+#user_dashboard .account-balance,
+#user_dashboard .user-options {
+  margin: 20px 0;
+}
+.user-options {
+  height: 500px;
+}
+#user_dashboard .account-balance img {
+  height: 120px;
+  width: 120px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+#user_dashboard .account-balance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer {
+  margin-bottom: 35px;
+}
+
+#user_dashboard .account-balance .account-information {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#user_dashboard .user-options .btn {
+  padding: 10px;
+  font-size: 14px;
+}
+
+#user_dashboard h1 {
+  font-size: 25px;
+}

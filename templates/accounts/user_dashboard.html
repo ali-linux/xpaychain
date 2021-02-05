@@ -1,16 +1,14 @@
-{% extends "base.html" %}
-
+{% extends "base.html" %} {% load static %}
 <body>
   {% block content %}
   <section id="user_dashboard">
-    <h1 align="center">account status {{user.plan}}</h1>
     <div class="container">
       {% include "_alerts.html" %}
       <div class="account-info">
         <div class="account-balance">
           <div class="account-information">
             <h2>{{user.first_name}} {{user.last_name}}</h2>
-            <img src="{{user.main_image.url}}" />
+            <img id="user-pic" src="{{user.main_image.url}}" />
           </div>
           <div class="account-balance-account">
             <h1>Account Balance</h1>
@@ -19,11 +17,7 @@
         </div>
         <div class="user-options">
           <div class="options-btn">
-            <a class="btn btn--primary" href="{% url 'trading' %}"
-              >Start trading</a
-            >
-            <a class="btn btn--primary" href="deposit.html">Deposit Money</a>
-            <a class="btn btn--primary" href="withdrawl.html"
+            <a class="btn btn--primary" href="{% url 'withdrawl' %}"
               >Withdrawl Money</a
             >
           </div>
@@ -34,12 +28,13 @@
             <li>
               {{tran.transaction_type}}..........${{tran.transaction_amount}}........{{tran.transaction_date}}
             </li>
-            {% endfor %}
+            {% endfor %} {% else %}
+            <p>There is no Transaction</p>
           </ul>
           {% endif %}
         </div>
       </div>
-      <div class="calculator m-top-30 p-40">
+      <!-- <div class="calculator m-top-30 p-40">
         <h1 class="m-bottom-30">Investment Calculator</h1>
         <label class="p-left-10" for="plan">Amount</label>
         <input type="text" placeholder="Amount $" />
@@ -68,8 +63,9 @@
         <button class="btn btn-submit btn--primary m-top-30" type="submit">
           calculate
         </button>
-      </div>
+      </div> -->
     </div>
   </section>
+  <!-- <script src="{% static 'assets/js/invs_calc.js' %}"></script> -->
   {% endblock content %}
 </body>

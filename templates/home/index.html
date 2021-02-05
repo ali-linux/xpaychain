@@ -4,7 +4,7 @@
   <body>
     {% block content %}
     <!-- .module-social end -->
-    <section id="service">
+    <section id="service" style="height: 100vh">
       <div class="container">
         <div class="content">
           <div class="Interest">
@@ -81,48 +81,6 @@
           </div>
         </div>
         <br />
-        <div class="chart">
-          <div class="tradingview-widget-container">
-            <div id="tradingview_b8695"></div>
-            <div class="tradingview-widget-copyright">
-              <a
-                href="https://www.tradingview.com/symbols/BTCUSDT/?exchange=BINANCE"
-                rel="noopener"
-                target="_blank"
-                ><span class="blue-text">BTCUSDT Chart</span></a
-              >
-              by TradingView
-            </div>
-            <script
-              type="text/javascript"
-              src="https://s3.tradingview.com/tv.js"
-            ></script>
-            <script type="text/javascript">
-              new TradingView.widget({
-                width: 1100,
-                height: 810,
-                symbol: "BINANCE:BTCUSDT",
-                interval: "D",
-                timezone: "Etc/UTC",
-                theme: "light",
-                style: "1",
-                locale: "en",
-                toolbar_bg: "#f1f3f6",
-                enable_publishing: false,
-                hide_side_toolbar: false,
-                allow_symbol_change: true,
-                watchlist: [
-                  "BINANCE:ETHUSDT",
-                  "BINANCE:LTCUSDT",
-                  "BINANCE:BTCUSDT",
-                ],
-                details: true,
-                studies: ["MASimple@tv-basicstudies", "RSI@tv-basicstudies"],
-                container_id: "tradingview_b8695",
-              });
-            </script>
-          </div>
-        </div>
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/gh/coinponent/coinponent@undefined/dist/coinponent.js"></script>
@@ -154,7 +112,6 @@
                 <div class="pricingTable-header">
                   <i class="fas fa-coins"></i>
                   <div class="price-value">5,000 USDT +</div>
-                  <!-- <span class="month">per month</span> -->
                 </div>
                 <h3 class="heading">Basic</h3>
                 <div class="pricing-content">
@@ -187,7 +144,6 @@
                     />
                   </svg>
                   <div class="price-value">10,000 USDT +</div>
-                  <!-- <span class="month">per month</span>  -->
                 </div>
                 <h3 class="heading">Standard</h3>
                 <div class="pricing-content">
@@ -205,7 +161,6 @@
                     <div class="imagee"></div>
                   </div>
                   <div class="price-value">20,000 USDT +</div>
-                  <!-- <span class="month">per month</span>  -->
                 </div>
                 <h3 class="heading">Gold</h3>
                 <div class="pricing-content">
@@ -221,7 +176,6 @@
                 <div class="pricingTable-header">
                   <i class="fa fa-diamond"></i>
                   <div class="price-value">50,000 USDT +</div>
-                  <!-- <span class="month">per month</span>  -->
                 </div>
                 <h3 class="heading">Diamond</h3>
                 <div class="pricing-content">
@@ -320,73 +274,19 @@
       <div class="card card-black">
         <i class="fas fa-map-marker-alt fa-3x"></i>
         <h3>Location</h3>
-        <p>50 Main st, Boston MA</p>
+        <p>sulaymaniah - salim street</p>
       </div>
       <div class="card card-primary">
         <i class="fas fa-phone fa-3x"></i>
         <h3>Phone Number</h3>
-        <p>(617) 555-5555</p>
+        <p>0750 12345678</p>
       </div>
       <div class="card card-black">
         <i class="fas fa-envelope fa-3x"></i>
         <h3>Email Address</h3>
-        <p>Fardo@Bitcoin.com</p>
+        <p>XpayChain@Bitcoin.com</p>
       </div>
     </section>
     {% include "js_home.html" %} {% endblock content %}
-    <!-- 
-    <footer>
-        <p>Copyrights &copy; 2020</p>
-    </footer> -->
-    <!--Start of Tawk.to Script-->
-    <!-- <script type="text/javascript">
-        var Tawk_API = Tawk_API || {},
-            Tawk_LoadStart = new Date();
-        (function() {
-            var s1 = document.createElement("script"),
-                s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/5fb0184c0863900e88c8b213/default';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-        })();
-    </script> -->
-    <!-- Replain chat -->
-    <!-- <script>
-        window.replainSettings = {
-            id: '1b06643f-4d4b-4e33-a773-0480a5984651'
-        };
-        (function(u) {
-            var s = document.createElement('script');
-            s.type = 'text/javascript';
-            s.async = true;
-            s.src = u;
-            var x = document.getElementsByTagName('script')[0];
-            x.parentNode.insertBefore(s, x);
-        })('https://widget.replain.cc/dist/client.js');
-    </script> -->
-    <!-- #wrapper end -->
-    <!-- <script src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"></script>
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/bitcoinTracker.js"></script>
-    <script src="assets/js/app.js"></script>
-    <script src="assets/js/functions.js"></script>
-    <script src="assets/js/bitcoinPriceWidgets.js"></script>
-    <script src="assets/js/bitcoinPrice.js"></script>
-    <script src="assets/js/bitcoinConverter.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/coinponent/coinponent@undefined/dist/coinponent.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script type='text/javascript' src=''></script>
-    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
-    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script type='text/javascript'></script>
-    <script src="assets/js/smoothScroll.js"></script>
-    <script src="assets/js/rsconfig.js"></script> -->
   </body>
 </html>
