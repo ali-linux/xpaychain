@@ -330,7 +330,9 @@ header {
 #user_dashboard .user-options {
   margin: 20px 0;
 }
-
+.user-options {
+  height: 500px;
+}
 #user_dashboard .account-balance img {
   height: 120px;
   width: 120px;
@@ -342,6 +344,13 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+footer {
+  position: relative;
+  bottom: 35px;
+  right: 0;
+  left: 0;
+  /* margin-bottom: 35px; */
 }
 
 #user_dashboard .account-balance .account-information {
@@ -357,4 +366,20 @@ header {
 
 #user_dashboard h1 {
   font-size: 25px;
+}
+
+#deposit {
+  overflow: auto;
+  width: auto;
+  margin-top: 75px;
+  height: 80vh;
+}
+#deposit .account-info {
+  margin: auto;
+  width: 300px;
+  height: 100%;
+}
+
+#convert {
+  display: none;
 }

@@ -12,14 +12,18 @@ cryptography==3.3.1
 dateparser==1.0.0
 Django==2.2
 django-admin-interface==0.14.1
+django-admin-notifications==0.6.3
 django-colorfield==0.3.2
 django-flat-responsive==2.0
 django-flat-theme==1.1.4
-django-jazzmin==2.4.1
+django-jazzmin==2.4.4
+django-model-utils==4.1.1
+django-notifications-hq==1.6.0
 hyperlink==20.0.1
 idna==2.10
 incremental==17.5.0
 isort==5.6.4
+jsonfield==3.1.0
 lazy-object-proxy==1.4.3
 mccabe==0.6.1
 Pillow==8.0.1
@@ -41,8 +45,8 @@ requests==2.25.1
 service-identity==18.1.0
 six==1.15.0
 sqlparse==0.4.1
+swapper==1.1.2.post1
 toml==0.10.2
-Twisted @ file:///C:/Users/Ali/Desktop/Twisted-20.3.0-cp39-cp39-win_amd64.whl
 txaio==20.12.1
 tzlocal==2.1
 urllib3==1.26.2

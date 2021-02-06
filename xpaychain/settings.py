@@ -25,8 +25,7 @@ ALLOWED_HOSTS = ['alii.pythonanywhere.com']
 
 # Application definition
 INSTALLED_APPS = [
-    'home.apps.HomeConfig',
-    'accounts.apps.AccountsConfig',
+    'accounts',
     # 'admin_interface',
     # 'colorfield',
     'jazzmin',
@@ -36,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'notifications'
 ]
 
 JAZZMIN_UI_TWEAKS = {
@@ -95,7 +95,7 @@ JAZZMIN_SETTINGS = {
     "topmenu_links": [
 
         # Url that gets reversed (Permissions can be added)
-        {"name": "view website",  "url": "index", "permissions": ["home.view_index"]},
+        {"name": "view website",  "url": "index", "permissions": ["xpaychain.view_index"]},
 
         # # external url that opens in a new window (Permissions can be added)
         # {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
@@ -276,6 +276,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
 from django.contrib.messages import constants as messages
+
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }

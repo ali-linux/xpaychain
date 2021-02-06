@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404,HttpResponse
 from django.contrib import messages,auth
-from .models import User,Trades
-from .models import Transactions
+from .models import User,Trades,Transactions,Requsest
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.core.files.storage import FileSystemStorage
@@ -12,6 +11,7 @@ from django.utils import timezone
 from . import config_api
 from binance.client import Client
 from binance.enums import *
+
 def login(request):
     #CHECK IF THE SUBIMTED FORM IS A POST REQUEST NOT A GET REQUEST
     if request.user.is_authenticated:
@@ -247,6 +247,17 @@ def sell(request):
         else:
             return redirect('login')
 
+@login_required
 def withdrawl(request):
-    
+    u = request.user
+    if request.method == 'POST' and request.user.is_authenticated:
+        req_amount = float(request.POST['req']) 
+        if req_amount > u.amount:
+            messages.warning(request,"You can't withdrawl more than what you have")
+            return redirect('withdrawl')
+        else:
+            r = Requsest(user = u, requested_amount = req_amount, phone = u.phone)
+            r.save()
+            messages.success(request,'Request has been sent successfully')
+            return redirect('dashboard')
     return render(request,'accounts/withdrawl.html')

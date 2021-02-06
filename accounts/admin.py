@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User,Transactions,Trades
+from .models import User,Transactions,Trades,Requsest
 from django import forms
 from django.forms import ValidationError
 
-UserAdmin.list_display = ('username','first_name','last_name','phone','email','main_image','subscribed','plan','transaction_url','amount')
+UserAdmin.list_display = ('id','username','first_name','last_name','amount','phone','email','main_image','subscribed','plan','transaction_url')
 # UserAdmin.fields = ('username','first_name','last_name','phone','email')
 # UserAdmin.list_display_links = ('trans',)
 
@@ -31,7 +31,7 @@ UserAdmin.fieldsets +=((None,{'fields':('phone','main_image','plan','amount','is
 
 class TransactionsAdmin(admin.ModelAdmin):
     # form = TransactionForm
-    list_display = ['username','transaction_type','transaction_amount','transaction_date','acc_balance','transaction_complete','user']
+    list_display = ['username','transaction_type','transaction_amount','transaction_date','acc_balance','transaction_complete','user','balance']
 
     fieldsets = ((None,{'fields':('user','transaction_type','transaction_amount')}),)
 
@@ -41,7 +41,11 @@ class TradesAdmin(admin.ModelAdmin):
     fieldsets = ((None,{'fields':('user','symbol','lot_size','trade_price')}),)
 
 
+class RequestAdmin(admin.ModelAdmin):
+    list_display = ['user', 'trans_type','requested_amount','account_balance','phone','read','date']
+    list_editable = ('read',)
 
 admin.site.register(Transactions,TransactionsAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(Trades,TradesAdmin)
+admin.site.register(Requsest,RequestAdmin)

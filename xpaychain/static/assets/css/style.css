@@ -20,7 +20,26 @@ body {
   color: #9b9b9b;
   margin: 0;
 }
+@media screen and (min-width: 990px) {
+  ::-webkit-scrollbar {
+    width: 20px;
+  }
 
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: grey;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #222;
+  }
+}
 #menu-check {
   display: none;
 }
@@ -2025,7 +2044,15 @@ table tbody tr td {
   font-family: "Roboto", sans-serif;
 }
 
+#deposit {
+  height: 90vh;
+}
+
 footer {
+  position: static;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: #222;
   height: 80px;
   display: flex;
@@ -2770,8 +2797,47 @@ footer p {
 .user-options {
   overflow: scroll;
 }
-
+.trans-list {
+  width: auto;
+  padding: 0;
+}
 .trans-list li {
-  font-size: 18px;
+  font-size: 15px;
   margin-bottom: 10px;
+}
+
+#user_dashboard {
+  height: auto;
+  padding: 50px 0;
+}
+#deposit .account-info {
+  margin-top: 100px;
+}
+
+.user-options {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.deposit {
+  width: 90vh;
+  height: 90vh;
+}
+.deposit .account-info {
+  margin-top: 100px;
+}
+.req_btn {
+  background: rgb(255, 165, 0);
+  height: 65px;
+  margin-top: 20px;
+  padding: 10px;
+  width: 100%;
+  font-size: 23px;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.req_btn:hover {
+  background: #222;
+  color: aliceblue;
 }

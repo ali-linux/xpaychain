@@ -6,6 +6,10 @@ from django.utils.html import format_html
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.forms import ValidationError
+from django.db.models.signals import post_save
+from notifications.signals import notify
+from notifications.models import Notification
+
 
 
 class User(AbstractUser):
@@ -45,6 +49,10 @@ class User(AbstractUser):
     # trans_url.allow_tags = True
 
 class Transactions(models.Model):
+    class Meta:
+        verbose_name = ("Transaction")
+        verbose_name_plural = ("Transactions")
+
     user                = models.ForeignKey(User,on_delete=models.CASCADE)
     # phone = models.ForeignKey(User,on_delete=models.DO_NOTHING)
     withdrawll          = 'withdrawll'
@@ -72,11 +80,19 @@ class Transactions(models.Model):
             self.save()
         
         return c_user
+    def balance(self):
+        return self.user.amount        
+        
     def clean(self):
-        if self.transaction_amount > 1 and self.transaction_type == 'withdrawll':
-            raise ValidationError("withdrawll cant be positive value")
-        if self.transaction_amount <= 0 and self.transaction_type == 'deposit':
-            raise ValidationError("Deposit cant be Zero or negative value")
+        if self.transaction_amount > self.user.amount and self.transaction_type == 'withdrawll' :
+            raise ValidationError("Can't withdrawll more than the account balance : {} ".format(self.user.amount))
+        else:
+            if self.transaction_amount > 1 and self.transaction_type == 'withdrawll' :
+                raise ValidationError("withdrawll can't be positive value")
+            if self.transaction_amount <= 0 and self.transaction_type == 'deposit':
+                raise ValidationError("Deposit can't be Zero or negative value")
+    def __str__(self):
+        return str(self.user) +" "+ self.transaction_type
 
 class Trades(models.Model):
     user            = models.ForeignKey(User,on_delete = models.CASCADE)
@@ -101,8 +117,25 @@ class Trades(models.Model):
     profit          = models.DecimalField(blank=True, null=True, verbose_name="Profit",decimal_places=2,max_digits=1000000)
 
 
+class Requsest(models.Model):
     
+    verbose_name = ("Reqasdasuest")
+    verbose_name_plural = 'Requestsghgf'
 
+    user            = models.ForeignKey(User,on_delete = models.CASCADE)
+    trans_type      = models.CharField( verbose_name='Type' ,max_length=50,default = 'withdrawl')
+    requested_amount= models.DecimalField(blank = True,decimal_places=2,max_digits=9999999)
+    date            = models.DateTimeField(verbose_name='Request Date',auto_now_add=True)
+    phone           = models.CharField(max_length=50,blank=True )
+    read            = models.BooleanField(default = False)
+
+    def account_balance(self):
+        return self.user.amount
+    def save(self, *args, **kwargs):
+        if self.read == False:
+            notify.send(self.user, recipient=User.objects.filter(is_superuser =True), verb='you reached level 10')
+        if self.read == True:
+            n = Notification.objects.filter(actor_object_id=self.user.id )
+            n[0].delete()
+        super(Requsest, self).save(*args, **kwargs)
     
-
-

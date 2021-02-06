@@ -16,22 +16,19 @@
           </div>
         </div>
         <div class="user-options">
-          <div class="options-btn">
-            <a class="btn btn--primary" href="{% url 'withdrawl' %}"
-              >Withdrawl Money</a
-            >
+          <div class="container">
+            <h3 class="m-top-30 text--center">Transaction History</h3>
+            {% if trans_query %}
+            <ul class="trans-list">
+              {% for tran in trans_query %}
+              <li>
+                {{tran.transaction_type}}......${{tran.transaction_amount}}......{{tran.transaction_date}}
+              </li>
+              {% endfor %} {% else %}
+              <p>There is no Transaction</p>
+            </ul>
+            {% endif %}
           </div>
-          <h3 class="m-top-30">Transaction History</h3>
-          {% if trans_query %}
-          <ul class="trans-list">
-            {% for tran in trans_query %}
-            <li>
-              {{tran.transaction_type}}..........${{tran.transaction_amount}}........{{tran.transaction_date}}
-            </li>
-            {% endfor %} {% else %}
-            <p>There is no Transaction</p>
-          </ul>
-          {% endif %}
         </div>
       </div>
       <!-- <div class="calculator m-top-30 p-40">
@@ -64,6 +61,11 @@
           calculate
         </button>
       </div> -->
+      <div class="options-btn mt-20 mb-20">
+        <a class="btn btn--primary" href="{% url 'withdrawl' %}"
+          >Withdrawl Money</a
+        >
+      </div>
     </div>
   </section>
   <!-- <script src="{% static 'assets/js/invs_calc.js' %}"></script> -->
