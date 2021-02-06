@@ -2049,8 +2049,8 @@ table tbody tr td {
 }
 
 footer {
-  position: static;
-  bottom: 0;
+  position: relative;
+  bottom: -40px;
   left: 0;
   right: 0;
   background: #222;

@@ -226,6 +226,18 @@
         <h3>Email Address</h3>
         <p>XpayChain@Bitcoin.com</p>
       </div>
+    <style>
+      footer{
+        position: static;
+        bottom: 0;
+      }
+      @media screen and (max-width: 450px)  {
+        footer{
+          position: relative;
+          bottom: 30px;
+        }
+      }
+    </style>
     </section>
     {% include "js_home.html" %} {% endblock content %}
   </body>
