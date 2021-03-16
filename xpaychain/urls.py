@@ -8,6 +8,8 @@ import notifications.urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('' , views.index, name = 'index'),
+    path('ku' , views.index, name = 'indexKu'),
+    path('ar' , views.index, name = 'indexAr'),
     path('accounts/',include('accounts.urls')),
     path('Transaction/<str:tel>',views.user_transactions),
     path('^inbox/notifications/', include(notifications.urls, namespace='notifications')),

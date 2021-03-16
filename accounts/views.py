@@ -1,25 +1,37 @@
 from django.shortcuts import render, redirect, get_object_or_404,HttpResponse
 from django.contrib import messages,auth
-from .models import User,Trades,Transactions,Requsest
+from .models import User,Transactions,Requsest
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.core.files.storage import FileSystemStorage
+from django.contrib.sites.shortcuts import get_current_site
 # from .models import password_reset
 import secrets
-from datetime import datetime
+from datetime import datetime,date
 from django.utils import timezone
-from . import config_api
-from binance.client import Client
-from binance.enums import *
+# from . import config_api
+# from binance.client import Client
+# from binance.enums import *
+
+kurdDash = '/accounts/ku/dashboard'
+arabDash = '/accounts/ar/dashboard'
+kuLogin = '/accounts/ku/login'
+arLogin = '/accounts/ar/login'
+kuRegister = '/accounts/ku/register'
+arRegister = '/accounts/ar/register'
 
 def login(request):
     #CHECK IF THE SUBIMTED FORM IS A POST REQUEST NOT A GET REQUEST
     if request.user.is_authenticated:
-        return redirect('index')
+        if('/ku' in request.path):
+            return redirect('/ku')
+        if('/ar' in request.path):
+            return redirect('/ar')
+        return redirect('index',)
     if request.method == 'POST':
         #STORE SUBMITED DATA INTO VARIBELS
         # username = request.POST['username-email']
-        email = request.POST['email']
+        email = request.POST['email'].lower()
         password = request.POST['password']
         #CHECK IF USER CREDENTIALS VALID
         # user_name = auth.authenticate(request, username=username, password=password)
@@ -30,29 +42,57 @@ def login(request):
             if user_1 is not None:
                 auth.login(request,user_1)
                 messages.success(request,'logged in successfully')
-                return redirect('dashboard')
+                if('/ku' in request.path):
+                    return redirect(kurdDash)
+                elif('/ar' in request.path):
+                    return redirect(arabDash)
+                else:
+                    return redirect('dashboard')
             else:
-                messages.error(request,'inavlid credentials')
-                return redirect('login')
+                if('/ku' in request.path):
+                    messages.error(request,'‌‌هەلەیە ٧ برا')
+                    return redirect(kuLogin)
+                elif('/ar' in request.path):
+                    return redirect(arLogin)
+                else:
+                    messages.error(request,'inavlid credentials')
+                    return redirect('login')
         # if user_name  is not None :
         #     auth.login(request,user_name)
         #     messages.success(request,'logged in successfully')
         #     return redirect('dashboard')
         else:
-            messages.error(request,'inavlid credentials')
-            return redirect('login')
+            if('/ku' in request.path):
+                messages.error(request,'‌‌هەلەیە ٧ برا')
+                return redirect(kuLogin)
+            elif('/ar' in request.path):
+                return redirect(arLogin)
+            else:
+                messages.error(request,'inavlid credentials')
+                return redirect('login')
+    if('/ku' in request.path):
+        return render(request, 'accounts/login_ku.html')
+    elif('/ar' in request.path):
+        return render(request, 'accounts/login_ar.html')
     return render(request,'accounts/login.html')
 
 
 def register(request):
     #CHECK IF THE SUBIMTED FORM IS A POST REQUEST NOT A GET REQUEST
+    if request.user.is_authenticated:
+        if('/ku' in request.path):
+            return redirect(kurdDash)
+        elif('/ar' in request.path):
+            return redirect(arabDash)
+        else:
+            return redirect('dashboard')
     if request.method == 'POST':
         #STORE SUBMITED DATA INTO VARIBELS
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         tel = request.POST['tel']
-        username = first_name+tel
-        email = request.POST['email']
+        username = (first_name+tel).lower()
+        email = request.POST['email'].lower()
         password = request.POST['password']
         password2 = request.POST['password2']
         pic_bool = False
@@ -66,20 +106,40 @@ def register(request):
             pass
         if password != password2:
             messages.error(request,'passwords dont match')
+            if('/ku' in request.path):
+                return redirect(kuRegister)
+
+            if('/ar' in request.path):
+                return redirect(arRegister)
+
+
             return redirect('register')
         else:
             if len(password2)  < 8:
                 messages.error(request,'password must be minimum 8 characters')
-                return redirect('register')
+                if('/ku' in request.path):
+                    return redirect(kuRegister)
+
+                elif('/ar' in request.path):
+                    return redirect(arRegister)
+                else:
+                    return redirect('register')
             else:
                 #check for duplicate emails
                 user_email = User.objects.filter(email=email).exists()
-                if user_email:
-                    messages.error(request,'email already taken')
-                    return redirect('register')
+                user_phone = User.objects.filter(phone = tel).exists()
+                if user_email or user_phone:
+                    messages.error(request,'user already exists with the email or phone number')
+                    if('/ku' in request.path):
+                        return redirect(kuRegister)
+
+                    elif('/ar' in request.path):
+                        return redirect(arRegister)
+                    else:
+                        return redirect('register')
                 else:
                     #EVERYTHING IS VALID
-                    trans = 'http://127.0.0.1:8000/Transaction/{0}'.format(tel)
+                    trans = 'http://{0}/Transaction/{1}'.format(get_current_site(request),tel)
                     if pic_bool:
                         user = User.objects.create_user(username=username,email=email, password=password, first_name=first_name, last_name=last_name,phone=tel,main_image=pic_file,trans = trans)
                         user.save()
@@ -87,10 +147,22 @@ def register(request):
                         user = User.objects.create_user(username=username,email=email, password=password, first_name=first_name, last_name=last_name,phone=tel,trans = trans)
                         user.save()
                     messages.success(request,'your account has been created successfuly, you can now login')
-                    return redirect('login')
+                    if('/ku' in request.path):
+                        return redirect(kuLogin)
+
+                    elif('/ar' in request.path):
+                        return redirect(arLogin)
+                    else:
+                        return redirect('login')
 
     else:
-        return render(request,'accounts/sign_up.html')
+        if('/ku' in request.path):
+            return render(request, 'accounts/sign_up_ku.html')
+
+        elif('/ar' in request.path):
+            return render(request, 'accounts/sign_up_ar.html')
+        else:
+            return render(request,'accounts/sign_up.html')
 
 
 
@@ -170,94 +242,177 @@ def time_t (obejt_str):
     #         return redirect('about')
     #     if user_token_rest:
     #         print('heloooooooooooooooooooooooooooo')
-@login_required
+# @login_required
 def dashboard(request):
     if not request.user.is_authenticated:
-        return redirect('index')
+        if('/ku' in request.path):
+            return redirect('/ku')
+        elif('/ar' in request.path):
+            return redirect('/ar')
+        else:
+            return redirect('index')
     else:
-        # trans = get_object_or_404(Transactions,user=request.user)
-        # u = User.objects.get(username=request.user)
-        trans = Transactions.objects.all()
-        trans_query = trans.filter(user=request.user)
-        api = request.user.api_secret
-        context = {"trans_query":trans_query,'api':api}
-        return render(request, 'accounts/user_dashboard.html',context)
+        print(request.build_absolute_uri)
+        basic = 0.07
+        standard = 0.08
+        others = 0.09
+        plan= request.user.plan
+        balance = request.user.amount
+        year = request.user.schedul_pay.year
+        month = request.user.schedul_pay.month
+        year_now = date.today().year
+        month_now = date.today().month
+        if(year == year_now and balance > 0):
+            if(month_now > month):
+                if(plan == "basic"):
+                    balance ="{:.2f}".format( balance + "{:.2f}".format(balance*basic) )
+                    request.user.schedul_pay = datetime.now()
+                elif(plan == "standard"):
+                    balance ="{:.2f}".format( balance + "{:.2f}".format(balance*standard) )
+                    request.user.schedul_pay = datetime.now()
+                elif(plan == "gold" or plan == "diamond"):
+                    request.user.amount =float( "{:.2f}".format( float(balance) + float("{:.2f}".format(float(balance)*others) )))
+                    request.user.schedul_pay = datetime.now()
+                    request.user.save()
+        elif(year < year_now):
+            if(plan == "basic"):
+                balance ="{:.2f}".format( balance + "{:.2f}".format(balance*basic) )
+                request.user.schedul_pay = datetime.now()
+                request.user.amount = float(balance) 
+            elif(plan == "standard"):
+                balance ="{:.2f}".format( balance + "{:.2f}".format(balance*standard) )
+                request.user.schedul_pay = datetime.now()
+                request.user.amount = float(balance) 
+
+            elif(plan == "gold" or plan == "diamond"):
+                balance = "{:.2f}".format( float(balance) + float("{:.2f}".format(float(balance)*others) ))
+                request.user.schedul_pay = datetime.now()
+                request.user.amount = float(balance) 
+        trans_query = Transactions.objects.filter(user=request.user)
+        context = {"trans_query":trans_query,}
+        if('/ku' in request.path):
+            return render(request, 'accounts/user_dashboard_ku.html',context)
+        elif('/ar' in request.path):
+            return render(request, 'accounts/user_dashboard_ar.html',context)
+        else:
+            return render(request, 'accounts/user_dashboard.html',context)
 
 @login_required
 def logout(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             auth.logout(request)
-            return redirect('index')
-        else:
-            return redirect('dashboard')
-    else:
-        return redirect('index')
-
-@login_required
-def trading(request):
-    if request.user.is_authenticated:
-        if request.user.is_trader:
-            user_api__secret_key = request.user.api_secret
-            user_api_key =request.user.api_key
-            client = Client(user_api_key,user_api__secret_key)
-            info = client.get_account()
-            exchange_info = client.get_exchange_info()
-            symbols = exchange_info['symbols']        
-            balance = info['balances']
-            all_symbols = []
-            for symbol in symbols:
-                all_symbols.append(symbol['symbol']) 
-            context = {'balance':balance, 'symbols':all_symbols, 'info':exchange_info}
-            return render(request,'accounts/trading.html',context)
-        else:
-            return redirect('dashboard')
-    else:
-        return redirect('login')
-
-@login_required
-def buy(request):
-        if request.user.is_authenticated:
-            if request.method == 'POST':
-                client = Client(config_api.API_KEY,config_api.API_SECRET)
-                symbol = request.POST['symbol']
-                amount = request.POST['amount']
-                order = client.create_test_order(
-                    symbol=symbol,
-                    side=SIDE_BUY,
-                    type=ORDER_TYPE_MARKET,
-                    quantity=amount)
-                context = {'amount':amount, 'symbol':symbol, 'order':order}
-                messages.success(request,'your order has been placed')
-                amount = float(amount)
-                trade = Trades(user=request.user,symbol=symbol,lot_size=amount)
-                trade.save()
-                return redirect('trading')
+            if('/ku' in request.path):
+                return redirect('/ku')
+            elif('/ar' in request.path):
+                return redirect('/ar')
             else:
-                messages.error(request,'fuckkkkkk')
-                return redirect('trading')
+                return redirect('index')
         else:
-            messages.error(request,'trade was not succesful')
-            return redirect('login')
+            if('/ku' in request.path):
+                return redirect(kurdDash)
+            elif('/ar' in request.path):
+                return redirect(arabDash)
+            else:
+                return redirect('dashboard')
+    else:
+        if('/ku' in request.path):
+            return redirect('/ku')
+        elif('/ar' in request.path):
+            return redirect('/ar')
+        else:
+            return redirect('index')
 
-@login_required
-def sell(request):
-        if request.user.is_authenticated:
-            pass
-        else:
-            return redirect('login')
+# @login_required
+# def trading(request):
+#     if request.user.is_authenticated:
+#         if request.user.is_trader:
+#             user_api__secret_key = request.user.api_secret
+#             user_api_key =request.user.api_key
+#             client = Client(user_api_key,user_api__secret_key)
+#             info = client.get_account()
+#             exchange_info = client.get_exchange_info()
+#             symbols = exchange_info['symbols']        
+#             balance = info['balances']
+#             all_symbols = []
+#             for symbol in symbols:
+#                 all_symbols.append(symbol['symbol']) 
+#             context = {'balance':balance, 'symbols':all_symbols, 'info':exchange_info}
+#             return render(request,'accounts/trading.html',context)
+#         else:
+#             return redirect('dashboard')
+#     else:
+#         return redirect('login')
+
+# @login_required
+# def buy(request):
+#         if request.user.is_authenticated:
+#             if request.method == 'POST':
+#                 client = Client(config_api.API_KEY,config_api.API_SECRET)
+#                 symbol = request.POST['symbol']
+#                 amount = request.POST['amount']
+#                 order = client.create_test_order(
+#                     symbol=symbol,
+#                     side=SIDE_BUY,
+#                     type=ORDER_TYPE_MARKET,
+#                     quantity=amount)
+#                 context = {'amount':amount, 'symbol':symbol, 'order':order}
+#                 messages.success(request,'your order has been placed')
+#                 amount = float(amount)
+#                 trade = Trades(user=request.user,symbol=symbol,lot_size=amount)
+#                 trade.save()
+#                 return redirect('trading')
+#             else:
+#                 messages.error(request,'fuckkkkkk')
+#                 return redirect('trading')
+#         else:
+#             messages.error(request,'trade was not succesful')
+#             return redirect('login')
+
+# @login_required
+# def sell(request):
+#         if request.user.is_authenticated:
+#             pass
+#         else:
+#             return redirect('login')
 
 @login_required
 def withdrawl(request):
     u = request.user
-    if request.method == 'POST' and request.user.is_authenticated:
-        req_amount = float(request.POST['req']) 
-        if req_amount > u.amount:
-            messages.warning(request,"You can't withdrawl more than what you have")
-            return redirect('withdrawl')
+    print( u.amount <= 0)
+    if u.amount <= 0:
+        messages.warning(request,"You are not subscribed you can't withdrawl")
+        if('/ku' in request.path):
+            return redirect(kurdDash)
+        elif('/ar' in request.path):
+            return redirect(arabDash)
         else:
-            r = Requsest(user = u, requested_amount = req_amount, phone = u.phone)
-            r.save()
-            messages.success(request,'Request has been sent successfully')
             return redirect('dashboard')
-    return render(request,'accounts/withdrawl.html')
+    else:
+        if request.method == 'POST' and request.user.is_authenticated:
+            req_amount = float(request.POST['req']) 
+            if req_amount > u.amount:
+                messages.warning(request,"You can't withdrawl more than what you have")
+                if('/ku' in request.path):
+                    return redirect('/accounts/ku/withdrawl')
+                elif('/ar' in request.path):
+                    return redirect('/accounts/ar/withdrawl')
+                else:
+                    return redirect('withdrawl')
+            else:
+                r = Requsest(user = u, requested_amount = req_amount, phone = u.phone)
+                r.save()
+                messages.success(request,'Request has been sent successfully')
+                if('/ku' in request.path):
+                    return redirect(kurdDash)
+                elif('/ar' in request.path):
+                    return redirect(arabDash)
+                else:
+                    return redirect('dashboard')
+
+        if('/ku' in request.path):
+            return render(request, 'accounts/withdrawl_ku.html')
+        elif('/ar' in request.path):
+            return render(request, 'accounts/withdrawl_ar.html')
+        else:
+            return render(request,'accounts/withdrawl.html')

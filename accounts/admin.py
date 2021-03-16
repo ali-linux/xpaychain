@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User,Transactions,Trades,Requsest
+from .models import User,Transactions,Requsest
 from django import forms
 from django.forms import ValidationError
 
-UserAdmin.list_display = ('id','username','first_name','last_name','amount','phone','email','main_image','subscribed','plan','transaction_url')
+UserAdmin.list_display = ('id','username','first_name','last_name','amount','phone','email','main_image','subscribed','plan','transaction_url','schedul_pay')
 # UserAdmin.fields = ('username','first_name','last_name','phone','email')
 # UserAdmin.list_display_links = ('trans',)
 
@@ -13,7 +13,7 @@ UserAdmin.list_filter            += ('subscribed',)
 UserAdmin.add_fieldsets +=((None,{'fields':('email','phone','first_name','last_name')}),)
 
 # when you want to edit user fields
-UserAdmin.fieldsets +=((None,{'fields':('phone','main_image','plan','amount','is_trader','is_invester','api_key','api_secret'
+UserAdmin.fieldsets +=((None,{'fields':('phone','main_image','plan','amount','is_invester','trans'
 )}),)
 
 
@@ -36,9 +36,9 @@ class TransactionsAdmin(admin.ModelAdmin):
     fieldsets = ((None,{'fields':('user','transaction_type','transaction_amount')}),)
 
     
-class TradesAdmin(admin.ModelAdmin):
-    list_display = ['user','symbol','lot_size']
-    fieldsets = ((None,{'fields':('user','symbol','lot_size','trade_price')}),)
+# class TradesAdmin(admin.ModelAdmin):
+#     list_display = ['user','symbol','lot_size']
+#     fieldsets = ((None,{'fields':('user','symbol','lot_size','trade_price')}),)
 
 
 class RequestAdmin(admin.ModelAdmin):
@@ -47,5 +47,5 @@ class RequestAdmin(admin.ModelAdmin):
 
 admin.site.register(Transactions,TransactionsAdmin)
 admin.site.register(User, UserAdmin)
-admin.site.register(Trades,TradesAdmin)
+# admin.site.register(Trades,TradesAdmin)
 admin.site.register(Requsest,RequestAdmin)

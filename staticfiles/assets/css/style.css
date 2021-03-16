@@ -110,11 +110,18 @@ body {
 }
 
 #menu a,
-#menu a:hover {
+#menu a:hover,
+#menu input:hover {
   color: orange;
   text-decoration: none;
 }
-
+#logout-li form {
+  display: flex;
+  flex-direction: row;
+}
+#logout {
+  display: flex;
+}
 #menu a {
   color: #f3f3f3;
   font-size: 17px;
@@ -2484,6 +2491,7 @@ body {
 #login #register h1 {
   font-size: 30px;
   right: 50%;
+  width: 100%;
 }
 
 .top {

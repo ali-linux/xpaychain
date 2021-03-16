@@ -1,0 +1,73 @@
+{% extends 'base_ku.html' %} {% load static %} {% block content %}
+<style>
+    #register .submit-form {
+        margin: auto;
+    }
+    
+    #register .submit-form button {
+        position: relative;
+        width: 300px;
+        margin: auto;
+        right: 0;
+        bottom: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+    #register #container {
+        height: auto;
+    }
+</style>
+<section id="login">
+    <section id="register">
+        <div id="container">
+            <div class="top">
+                <i class="fas fa-sign-in-alt fa-2x"></i>
+                <h1>
+                    چونە ژورەوە</h1>
+            </div>
+            <div class="register-area">
+                <div class="form-input">
+                    {% include "_alerts.html" %}
+                    <form autocomplete="off" action="{% url 'loginKu' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="div-1">
+                            <input autocomplete="false" name="hidden" type="text" style="display:none;">
+                            <label for="email">ئیمەیل</label>
+                            <input autocomplete="false" type="email" placeholder="email address" name="email" id="email">
+                            <div class="div-1">
+                                <label for="password">وشەی نهێنی</label>
+                                <div class="pass-div">
+                                    <input type="password" placeholder="Password" name="password" id="password">
+                                    <i id="show-password" class="fas fa-eye pass-icon show-password"></i>
+                                    <i id="hide-password" class="fas fa-eye-slash pass-icon hide-icon"></i>
+                                </div>
+                                <div class="submit-form">
+                                    <button type="submit">چونە ژورەوە</button>
+                                </div>
+                            </div>
+                            <a href="/accounts/password/reset/">ئایا وشەی نهێنیت لەبیر کردوە؟</a>
+                            </small>
+                            <div class="border-top pt-3">
+                                <small class="text-muted small-text">
+                            ئەکاونتت نییە؟ <a href="{% url 'registerKu' %}">ئەکاونتت دروست بکە</a>
+                        </small>
+                            </div>
+                    </form>
+                    </div>
+                    </form>
+                </div>
+            </div>
+    </section>
+</section>
+<style>
+    #tracker{
+        display: none;
+    }
+
+</style>
+{% include "js_register.html" %} {% endblock content %}
+
+</body>
+
+</html>

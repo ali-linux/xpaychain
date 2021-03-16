@@ -25,7 +25,7 @@ ALLOWED_HOSTS = ['alii.pythonanywhere.com']
 
 # Application definition
 INSTALLED_APPS = [
-    'accounts',
+    'accounts.apps.AccountsConfig',
     # 'admin_interface',
     # 'colorfield',
     'jazzmin',

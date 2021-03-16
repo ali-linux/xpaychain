@@ -45,13 +45,14 @@
       media="screen and (max-width: 768px)"
       href="{% static 'assets/css/mobile.css' %} "
     />
+    <link rel="stylesheet" href=" {% static 'assets/css/ku_ar.css' %} " />
     <script
       src="https://kit.fontawesome.com/7ec4da360a.js"
       crossorigin="anonymous"
     ></script>
+
     <title>Fardo | Crypto</title>
   </head>
-
   <body>
     <div class="preloader">
       <div class="loader-eclipse">
@@ -85,29 +86,10 @@
             <span></span>
             <ul id="menu">
               {% if user.is_authenticated %}
-              <ul>
-                <a href="{% url 'index' %}" class="pc">
-                  <li class="active">HOME</li>
-                </a>
-                {% if 'accounts' in request.path %}
-                <a href="{% url 'index' %}" class="mob">
-                  <li>HOME</li>
-                </a>
-                {%else%}
-                <a href="#service" class="mob">
-                  <li>HOME</li>
-                </a>
-                <a href="#about" class="mob">
-                  <li>ABOUT</li>
-                </a>
-                <a href="#fqa" class="mob">
-                  <li>FAQ</li>
-                </a>
-                {% endif %}
-              </ul>
+
               <ul id="log-part">
-                <a href="{% url 'dashboard' %}" class="sign-up">
-                  <li>DASHBOARD</li>
+                <a href="{% url 'dashboardKu' %}" class="sign-up">
+                  <li>داشبۆرد</li>
                 </a>
                 <style>
                   #logout input {
@@ -118,7 +100,7 @@
                     margin: 0 10px;
                     cursor: pointer;
                     font-size: 17px;
-                    height: 35px;
+                    height: 100%;
                     width: 100%;
                   }
                   #logout input:hover {
@@ -130,43 +112,77 @@
                     padding: 0;
                     margin: 0;
                   }
+                  .flags {
+                    left: 30px;
+                    right: none;
+                  }
+                  #log-part {
+                    padding-right: 0;
+                    padding-left: 100px;
+                  }
                 </style>
                 <li id="logout-li">
-                  <form action="{% url 'logout' %}" method="post" id="logout">
+                  <form action="{% url 'logoutKu' %}" method="post" id="logout">
                     {% csrf_token %}
-                    <input type="submit" class="log nav-link" value="LOGOUT" />
+                    <input
+                      type="submit"
+                      class="log nav-link"
+                      placeholder="لۆگ ئاوت"
+                      value="لۆگ ئاوت"
+                    />
                   </form>
                 </li>
               </ul>
-              {%else%}
               <ul>
-                <a href="{% url 'index' %}" class="pc">
-                  <li class="active">HOME</li>
+                <a href="{% url 'indexKu' %}" class="pc">
+                  <li class="active">سەرەتا</li>
                 </a>
                 {% if 'accounts' in request.path %}
-                <a href="{% url 'index' %}" class="mob">
-                  <li>HOME</li>
+                <a href="{% url 'indexKu' %}" class="mob">
+                  <li>سەرەتا</li>
                 </a>
                 {%else%}
-                <a href="#service" class="mob">
-                  <li>HOME</li>
-                </a>
-                <a href="#about" class="mob">
-                  <li>ABOUT</li>
-                </a>
                 <a href="#fqa" class="mob">
                   <li>FAQ</li>
                 </a>
+                <a href="#about" class="mob">
+                  <li>دەربارەی ئەمە</li>
+                </a>
+                <a href="#service" class="mob">
+                  <li>سەرەتا</li>
+                </a>
                 {% endif %}
               </ul>
+              {%else%}
               <ul id="log-part">
-                <a href="{% url 'register' %}" class="sign-up">
-                  <li>SIGN UP</li>
+                <a href="{% url 'registerKu' %}" class="sign-up">
+                  <li>خۆتۆمار کردن</li>
                 </a>
-                <a href="{% url 'login' %}" class="login">
-                  <li>LOGIN</li>
+                <a href="{% url 'loginKu' %}" class="login">
+                  <li>چونە ژورەوە</li>
                 </a>
               </ul>
+              <ul>
+                <a href="{% url 'indexKu' %}" class="pc">
+                  <li class="active">سەرەتا</li>
+                </a>
+                {% if 'accounts' in request.path %}
+                <a href="{% url 'indexKu' %}" class="mob">
+                  <li>سەرەتا</li>
+                </a>
+                {%else%}
+                <a href="#fqa" class="mob">
+                  <li>FAQ</li>
+                </a>
+                <a href="#about" class="mob">
+                  <li>دەربارەی ئەمە</li>
+                </a>
+                <a href="#service" class="mob">
+                  <li>سەرەتا</li>
+                </a>
+                {% endif %}
+              </ul>
+
               {%endif%}
             </ul>
           </div>

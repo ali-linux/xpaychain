@@ -86,11 +86,11 @@
             <ul id="menu">
               {% if user.is_authenticated %}
               <ul>
-                <a href="{% url 'index' %}" class="pc">
+                <a href="{% url 'indexAr' %}" class="pc">
                   <li class="active">HOME</li>
                 </a>
                 {% if 'accounts' in request.path %}
-                <a href="{% url 'index' %}" class="mob">
+                <a href="{% url 'indexAr' %}" class="mob">
                   <li>HOME</li>
                 </a>
                 {%else%}
@@ -101,12 +101,12 @@
                   <li>ABOUT</li>
                 </a>
                 <a href="#fqa" class="mob">
-                  <li>FAQ</li>
+                  <li>FQA</li>
                 </a>
                 {% endif %}
               </ul>
               <ul id="log-part">
-                <a href="{% url 'dashboard' %}" class="sign-up">
+                <a href="{% url 'dashboardAr' %}" class="sign-up">
                   <li>DASHBOARD</li>
                 </a>
                 <style>
@@ -115,15 +115,11 @@
                     border: none;
                     color: white;
                     padding: 0;
-                    margin: 0 10px;
+                    margin: 0;
                     cursor: pointer;
                     font-size: 17px;
-                    height: 35px;
+                    height: 100%;
                     width: 100%;
-                  }
-                  #logout input:hover {
-                    transition: all 0.4s ease;
-                    color: rgb(255, 165, 0);
                   }
 
                   #logout {
@@ -132,7 +128,7 @@
                   }
                 </style>
                 <li id="logout-li">
-                  <form action="{% url 'logout' %}" method="post" id="logout">
+                  <form action="{% url 'logoutAr' %}" method="post" id="logout">
                     {% csrf_token %}
                     <input type="submit" class="log nav-link" value="LOGOUT" />
                   </form>
@@ -140,11 +136,11 @@
               </ul>
               {%else%}
               <ul>
-                <a href="{% url 'index' %}" class="pc">
+                <a href="{% url 'indexAr' %}" class="pc">
                   <li class="active">HOME</li>
                 </a>
                 {% if 'accounts' in request.path %}
-                <a href="{% url 'index' %}" class="mob">
+                <a href="{% url 'indexAr' %}" class="mob">
                   <li>HOME</li>
                 </a>
                 {%else%}
@@ -155,15 +151,15 @@
                   <li>ABOUT</li>
                 </a>
                 <a href="#fqa" class="mob">
-                  <li>FAQ</li>
+                  <li>FQA</li>
                 </a>
                 {% endif %}
               </ul>
               <ul id="log-part">
-                <a href="{% url 'register' %}" class="sign-up">
+                <a href="{% url 'registerAr' %}" class="sign-up">
                   <li>SIGN UP</li>
                 </a>
-                <a href="{% url 'login' %}" class="login">
+                <a href="{% url 'loginAr' %}" class="login">
                   <li>LOGIN</li>
                 </a>
               </ul>
@@ -294,7 +290,9 @@
     <!-- #wrapper end -->
     <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'assets/js/functions.js' %}"></script>
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     {% include "js_home.html" %}
   </body>
 </html>

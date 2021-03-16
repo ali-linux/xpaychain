@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from datetime import datetime
+from datetime import datetime,date
 from django.utils import timezone
 from django.utils.html import format_html
 from django.shortcuts import render, get_object_or_404
@@ -13,10 +13,11 @@ from notifications.models import Notification
 
 
 class User(AbstractUser):
+
     phone       = models.CharField(max_length=50,blank=True,)
     main_image  = models.ImageField(blank = True,null=True, default='default.jpg')
     no_plan     = 'Not subscribed'
-    basic       = 'Basic'
+    basic       = 'basic'
     standard    = 'standard'
     gold        = 'gold'
     diamond     = 'diamond'
@@ -36,17 +37,33 @@ class User(AbstractUser):
     amount          = models.DecimalField(blank=True,null=True,default=0,verbose_name='Balance',max_digits=99999999,decimal_places=2)
     # date_joined   = models.DateField(default = timezone.now, blank = True)
     date_joind      = models.DateTimeField(verbose_name='date joined',auto_now_add=True)
+    schedul_pay      = models.DateTimeField(verbose_name='Scheduled payment',auto_now_add=True, null=True)
     trans =models.URLField(verbose_name='Transactions',max_length=250)
     subscribed = models.BooleanField(verbose_name='Subscribed',default=False)
     def transaction_url(self):
         return format_html(
             '<a href="{}">Transactions</a>',
             self.trans,)
-    is_trader = models.BooleanField(default=False, verbose_name='Trader')
+    # is_trader = models.BooleanField(default=False, verbose_name='Trader')
     is_invester = models.BooleanField(default=False, verbose_name='Invester')
-    api_key = models.CharField(max_length=255,blank=True)
-    api_secret = models.CharField(max_length=255,blank=True)
+    # api_key = models.CharField(max_length=255,blank=True)
+    # api_secret = models.CharField(max_length=255,blank=True)
     # trans_url.allow_tags = True
+
+    def save(self, *args, **kwargs):
+        if(self.amount > 0):
+            self.subscribed = True
+            if(self.amount>=5000 and self.amount <10000):
+                self.plan = "basic"
+            elif(self.amount>=10000 and self.amount <20000):
+                self.plan = "standard"
+            elif(self.amount>=20000 and self.amount <50000):
+                self.plan = "gold"
+            elif(self.amount>=50000):
+                self.plan = "diamond"
+        super(User, self).save(*args, **kwargs)
+
+        
 
 class Transactions(models.Model):
     class Meta:
@@ -94,27 +111,27 @@ class Transactions(models.Model):
     def __str__(self):
         return str(self.user) +" "+ self.transaction_type
 
-class Trades(models.Model):
-    user            = models.ForeignKey(User,on_delete = models.CASCADE)
-    buy             = 'Long'
-    sell            = 'Short'
-    postion_types   = [
-        (buy,'Long'),
-        (sell,'Short')
-    ]
-    running         = 'Running'
-    closed         = 'Closed'
-    trade_statuss = [
-        (running, 'Running'),
-        (closed, 'Closed')
-        ]
-    postion         = models.CharField(max_length = 50,choices = postion_types,blank=True, null=True)
-    lot_size        = models.DecimalField(blank=True, null=True, verbose_name = 'Lot size',decimal_places=15,max_digits=100)
-    trade_price     = models.DecimalField(blank=True, null=True, verbose_name = "Trade Price",decimal_places=15,max_digits=100)
-    symbol          = models.CharField(max_length = 22)
-    trade_date      = models.DateTimeField(verbose_name = 'Date',auto_now_add = True)
-    trade_status    = models.CharField(max_length = 25,choices = trade_statuss,blank=True, null=True)
-    profit          = models.DecimalField(blank=True, null=True, verbose_name="Profit",decimal_places=2,max_digits=1000000)
+# class Trades(models.Model):
+#     user            = models.ForeignKey(User,on_delete = models.CASCADE)
+#     buy             = 'Long'
+#     sell            = 'Short'
+#     postion_types   = [
+#         (buy,'Long'),
+#         (sell,'Short')
+#     ]
+#     running         = 'Running'
+#     closed         = 'Closed'
+#     trade_statuss = [
+#         (running, 'Running'),
+#         (closed, 'Closed')
+#         ]
+#     postion         = models.CharField(max_length = 50,choices = postion_types,blank=True, null=True)
+#     lot_size        = models.DecimalField(blank=True, null=True, verbose_name = 'Lot size',decimal_places=15,max_digits=100)
+#     trade_price     = models.DecimalField(blank=True, null=True, verbose_name = "Trade Price",decimal_places=15,max_digits=100)
+#     symbol          = models.CharField(max_length = 22)
+#     trade_date      = models.DateTimeField(verbose_name = 'Date',auto_now_add = True)
+#     trade_status    = models.CharField(max_length = 25,choices = trade_statuss,blank=True, null=True)
+#     profit          = models.DecimalField(blank=True, null=True, verbose_name="Profit",decimal_places=2,max_digits=1000000)
 
 
 class Requsest(models.Model):

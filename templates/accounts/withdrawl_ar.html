@@ -1,0 +1,41 @@
+{% extends "base_ar.html" %}
+<body>
+  {% block content %}
+  <style></style>
+  <div id="deposit" class="container">
+    <div class="account-info">
+      {% include "_alerts.html" %}
+      <div class="account-balance">
+        <div class="account-information mb-20">
+          <h2 class="mb-10">{{user.first_name}} {{user.last_name}}</h2>
+          <img src="{{user.main_image.url}}" />
+        </div>
+        <div class="account-balance-account">
+          <h1>Account Balance</h1>
+          <h3>${{user.amount}}</h3>
+        </div>
+        <form action=" {% url 'withdrawlAr' %}" method="POST">
+          {% csrf_token %}
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+            <input
+              name="req"
+              placeholder="Type the requested amount"
+              type="number"
+              class="form-control"
+              aria-label="Amount (to the nearest dollar)"
+              required
+            />
+            <div class="input-group-append">
+              <span class="input-group-text">.00</span>
+            </div>
+          </div>
+          <button class="req_btn" type="submit">Submit request</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+</body>

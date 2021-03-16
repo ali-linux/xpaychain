@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load static %}
+{% extends "base_ku.html" %} {% load static %}
 <body>
   {% block content %}
   <section id="user_dashboard">
@@ -11,13 +11,13 @@
             <img id="user-pic" src="{{user.main_image.url}}" />
           </div>
           <div class="account-balance-account">
-            <h1 align="center">Account Balance</h1>
+            <h1 align="center">بالانسی هەژمار</h1>
             <h3>${{user.amount}}</h3>
           </div>
         </div>
         <div class="user-options">
           <div class="container">
-            <h3 class="m-top-30 text--center">Transaction History</h3>
+            <h3 class="m-top-30 text--center">مامەڵەکانم</h3>
             {% if trans_query %}
             <ul class="trans-list">
               {% for tran in trans_query %}
@@ -25,7 +25,7 @@
                 {{tran.transaction_type}}......${{tran.transaction_amount}}......{{tran.transaction_date}}
               </li>
               {% endfor %} {% else %}
-              <p>There is no Transaction</p>
+              <p>‌هیج ماماڵەیەکت نییە</p>
             </ul>
             {% endif %}
           </div>
@@ -62,8 +62,8 @@
         </button>
       </div> -->
       <div class="options-btn mt-20 mb-20">
-        <a class="btn btn--primary" href="{% url 'withdrawl' %}"
-          >Withdrawl Money</a
+        <a class="btn btn--primary" href="{% url 'withdrawlKu' %}"
+          >راکێشانی پارە</a
         >
       </div>
     </div>

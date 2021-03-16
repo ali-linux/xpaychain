@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from accounts.models import User,Transactions
-
+from django.http import HttpRequest
 
 def user_transactions(request,tel):
     if request.user.is_superuser:
@@ -15,5 +15,10 @@ def user_transactions(request,tel):
     return render(request,'custom.html',context)
 
 def index(request):
-    return render(request,'home/index.html')
+    if('/ku' in request.path):
+        return render(request, 'home/index_ku.html')
+    elif('/ar' in request.path):
+        return render(request,'home/index_ar.html')
+    else:
+        return render(request,'home/index.html')
 

@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load static %}
+{% extends "base_ar.html" %} {% load static %}
 <body>
   {% block content %}
   <section id="user_dashboard">
@@ -12,6 +12,7 @@
           </div>
           <div class="account-balance-account">
             <h1 align="center">Account Balance</h1>
+            <h1>arabm dshtala arabm</h1>
             <h3>${{user.amount}}</h3>
           </div>
         </div>
@@ -62,7 +63,7 @@
         </button>
       </div> -->
       <div class="options-btn mt-20 mb-20">
-        <a class="btn btn--primary" href="{% url 'withdrawl' %}"
+        <a class="btn btn--primary" href="{% url 'withdrawlAr' %}"
           >Withdrawl Money</a
         >
       </div>

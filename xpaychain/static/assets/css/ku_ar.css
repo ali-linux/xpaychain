@@ -1,0 +1,51 @@
+@font-face {
+  font-family: kurdi;
+  src: url(./fonts/NRT-Reg.ttf);
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+button,
+small,
+label,
+li,
+::placeholder,
+::-ms-value,
+span,
+input,
+.pricingTable .pricingTable-signup a,
+.pricingTable .heading {
+  font-family: kurdi;
+}
+
+#service,
+#service2,
+#risk,
+#about {
+  /* direction: rtl; */
+}
+
+#service,
+#risk,
+#about {
+  text-align: right;
+}
+#risk h1 {
+  text-align: center;
+}
+#risk p {
+  flex: 2;
+  margin: 20px 15px;
+}
